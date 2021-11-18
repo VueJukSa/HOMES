@@ -66,17 +66,17 @@
       <b-row>
         <b-col>
           <b-card no-body class="border-0">
-            <div style="height: 500px">
+            <div style="height: 600px">
               <b-row>
                 <b-col>
                   <house-search-bar />
                 </b-col>
               </b-row>
               <b-row>
-                <b-col cols="6" align="left">
+                <b-col cols="8" align="left">
                   <house-list />
                 </b-col>
-                <b-col cols="6">
+                <b-col cols="4">
                   <house-detail />
                 </b-col>
               </b-row>
@@ -85,7 +85,7 @@
         </b-col>
         <b-col>
           <b-card no-body class="border-0">
-            <div id="map-custom" class="map-canvas" style="height: 500px"></div>
+            <div id="map-custom" class="map-canvas" style="height: 600px"></div>
           </b-card>
         </b-col>
       </b-row>

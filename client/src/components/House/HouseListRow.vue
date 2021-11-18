@@ -1,6 +1,6 @@
 <template>
   <b-row
-    class="m-2"
+    class="m-1"
     @click="selectHouse"
     @mouseover="colorChange(true)"
     @mouseout="colorChange(false)"

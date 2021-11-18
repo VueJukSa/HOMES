@@ -1,14 +1,30 @@
 <template>
-  <b-row class="mt-1 mb-1 text-center">
-    <b-col class="sm-3">
+  <b-row class="mt-1 mb-1 pr-2 pl-1 text-center">
+    <b-col>
+      <!-- 시 선택 -->
       <b-form-select
+        size="sm"
+        class="mt-2 ml-2"
         v-model="sidoCode"
         :options="sidos"
         @change="gugunList"
       ></b-form-select>
     </b-col>
-    <b-col class="sm-3">
+    <!-- 군구 선택 -->
+    <b-col>
       <b-form-select
+        size="sm"
+        class="mt-2"
+        v-model="gugunCode"
+        :options="guguns"
+        @change="searchApt"
+      ></b-form-select>
+    </b-col>
+    <!-- 아파트 종류 선택 -->
+    <b-col class="pl-0">
+      <b-form-select
+        size="sm"
+        class="mt-2"
         v-model="gugunCode"
         :options="guguns"
         @change="searchApt"

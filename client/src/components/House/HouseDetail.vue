@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row">
+  <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
         <b-alert show variant="secondary"
