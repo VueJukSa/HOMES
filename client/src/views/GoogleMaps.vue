@@ -73,13 +73,17 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col cols="8" align="left">
+                <b-col cols="4" align="left">
                   <house-list />
                 </b-col>
-                <b-col cols="4">
+                <b-col cols="8">
                   <house-detail />
                 </b-col>
               </b-row>
+
+              <div>
+                <house-paging-bar />
+              </div>
             </div>
           </b-card>
         </b-col>
@@ -97,6 +101,7 @@ import { API_KEY } from "./Maps/API_KEY";
 import HouseSearchBar from "@/components/House/HouseSearchBar.vue";
 import HouseList from "@/components/House/HouseList.vue";
 import HouseDetail from "@/components/House/HouseDetail.vue";
+import HousePagingBar from "@/components/House/HousePagingBar.vue";
 
 export default {
   name: "Maps",
@@ -104,6 +109,7 @@ export default {
     HouseSearchBar,
     HouseList,
     HouseDetail,
+    HousePagingBar,
   },
   data() {
     return {

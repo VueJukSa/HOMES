@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     sidos: [{ value: null, text: "선택하세요" }],
     guguns: [{ value: null, text: "선택하세요" }],
+    houseCodes: [{ value: null, text: "선택하세요" }],
     houses: [],
     house: null,
     userid: "",
@@ -32,12 +33,25 @@ export default new Vuex.Store({
         });
       });
     },
+    GET_HOUSE_CODE_LIST(state, houseCodes) {
+      houseCodes.forEach((houseCode) => {
+        state.houseCodes.push({
+          value: houseCode.id,
+          text: houseCode.name,
+        });
+      });
+    },
+
     CLEAR_GUGUN_LIST(state) {
       state.guguns = [{ value: null, text: "선택하세요" }];
     },
     CLEAR_SIDO_LIST(state) {
       state.sidos = [{ value: null, text: "선택하세요" }];
     },
+    CLEAR_HOUSE_CODE_LIST(state) {
+      state.houseCodes = [{ value: null, text: "선택하세요" }];
+    },
+
     SET_HOUSE_LIST(state, houses) {
       state.houses = houses;
     },
@@ -74,8 +88,24 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
-    getHouseList({ commit }, gugunCode) {
+
+    getHouseCode({ commit }) {
+      const params = {};
+      http
+        .get(`/map/housecode`, { params })
+        .then((response) => {
+          //2. 비동기 진행 후 해당 데이터를 뮤테이션에게 넘김
+          commit("GET_HOUSE_CODE_LIST", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    getHouseList({ commit }, gugunCode, sidoCode, houseCode) {
       // const KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
+
+      // 수정해야함
       const KEY = `fSoOVDMB7t8UixqTl6RO4oG86zqwigHcHDarqzeT4kSmNVf4ouJdt86NDF6sk6jXI9ax%2B7W0Q0RmA%2BJZnLIonA%3D%3D`;
       const URL = `http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev`;
       const params = {

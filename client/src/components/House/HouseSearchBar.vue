@@ -1,6 +1,6 @@
 <template>
   <b-row class="mt-1 mb-1 pr-2 pl-1 text-center">
-    <b-col>
+    <b-col cols="3">
       <!-- 시 선택 -->
       <b-form-select
         size="sm"
@@ -11,22 +11,22 @@
       ></b-form-select>
     </b-col>
     <!-- 군구 선택 -->
-    <b-col>
+    <b-col cols="3">
       <b-form-select
         size="sm"
-        class="mt-2"
+        class="mt-2 ml-2"
         v-model="gugunCode"
         :options="guguns"
-        @change="searchApt"
+        @change="houseCodeList"
       ></b-form-select>
     </b-col>
-    <!-- 아파트 종류 선택 -->
-    <b-col class="pl-0">
+    <!-- 집 종류 선택-->
+    <b-col cols="3">
       <b-form-select
         size="sm"
-        class="mt-2"
-        v-model="gugunCode"
-        :options="guguns"
+        class="mt-2 ml-2"
+        v-model="houseCode"
+        :options="houseCodes"
         @change="searchApt"
       ></b-form-select>
     </b-col>
@@ -41,16 +41,21 @@ export default {
     return {
       sidoCode: null,
       gugunCode: null,
+      houseCode: null,
     };
   },
   // 보통 state에서 데이터를 가져올 때 사용한다
   computed: {
     // map 사용 시
-    ...mapState(["sidos", "guguns", "houses"]),
+    ...mapState(["sidos", "guguns", "houseCodes"]),
   },
   methods: {
-    ...mapActions(["getSido", "getGugun", "getHouseList"]),
-    ...mapMutations(["CLEAR_GUGUN_LIST", "CLEAR_SIDO_LIST"]),
+    ...mapActions(["getSido", "getGugun", "getHouseCode", "getHouseList"]),
+    ...mapMutations([
+      "CLEAR_GUGUN_LIST",
+      "CLEAR_SIDO_LIST",
+      "CLEAR_HOUSECODE_LIST",
+    ]),
     sidoList() {
       this.CLEAR_SIDO_LIST();
       // mapActions를 통해 가져온 함수
@@ -64,9 +69,16 @@ export default {
         this.getGugun(this.sidoCode);
       }
     },
+    houseCodeList() {
+      this.houseCode = null;
+      if (this.gugunCode && this.sidoCode) {
+        this.CLEAR_HOUSECODE_LIST();
+        this.getHouseCode();
+      }
+    },
     searchApt() {
-      if (this.gugunCode) {
-        this.getHouseList(this.gugunCode);
+      if (this.houseCode && this.sidoCode && this.gugunCode) {
+        this.getHouseList(this.houseCode);
       }
     },
   },
