@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.vue.model.mapper.HouseMapMapper">
+
+	<select id="getSido" resultType="sidoGugunCodeDto">
+		select left(sidoCode,2)
+		sidoCode, sidoName
+		from sidocode
+		order by sidoCode
+	</select>
+
+	<select id="getGugunInSido" parameterType="string"
+		resultType="sidoGugunCodeDto">
+		select left(gugunCode,5) gugunCode, gugunName
+		from guguncode
+		where left(gugunCode,2) = #{sido}
+		order by gugunCode
+	</select>
+
+	<select id="getDongInGugun" parameterType="string"
+		resultType="houseInfoDto">
+		select distinct dongName, dongCode
+		from houseinfo
+		where
+		left(dongCode, 5) = #{gugun}
+		order by dongName
+	</select>
+
+	<select id="getAptInDong" parameterType="string"
+		resultType="houseInfoDto">
+		select 시군구, 번지, 본번, 부번, 단지명, 전용면적, 계약년월, 계약일, 거래금액, 층,
+		건축년도, 도로명, 해제사유발생일,
+		거래유형, 중개사소재지 from apt_maemae
+		where 시군구 = (
+		select
+		concat(sidoName, " ", gugunName, " ", dongName) as 시군구
+		from dongcode
+		where dongCode = #{dong})
+	</select>
+
+	<select id="getAptTest" parameterType="string"
+		resultType="string">
+		select concat(sidoName, " ", gugunName, " ", dongName) as 시군구
+		from dongcode
+		where dongCode = #{dong}
+	</select>
+
+
+	<select id="getHouseCode" resultType="houseCodeDto">
+		select id, name
+		from
+		house_code
+		order by id
+	</select>
+
+</mapper>
