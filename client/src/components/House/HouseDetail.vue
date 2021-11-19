@@ -1,14 +1,12 @@
 <template>
   <b-container class="bv-example-row mt-3">
     <b-row>
-      <b-col>
+      <b-col v-if="house != null">
         <b-alert show variant="secondary">
-          아파트 이름 : {{ house.아파트 }} <br />
-          일련번호 : {{ house.일련번호 }}<br />
-          법정동 : {{ house.법정동 }}<br />
-          층수 : {{ house.층 }}<br />
-          거래금액 :
-          {{ (parseInt(house.거래금액.replace(",", "")) * 10000) | price }}원
+          아파트 이름 : {{ house.danjiname }} <br />
+          평수 : {{ house.area }}<br />
+          법정동 : {{ house.sigungu }}<br />
+          층수 : {{ house.floor }}<br />
         </b-alert>
       </b-col>
     </b-row>

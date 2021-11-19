@@ -1,40 +1,40 @@
 <template>
   <b-row class="mt-1 mb-1 pr-2 pl-1 text-center">
-    <b-col cols="3">
+    <b-col class="select">
       <!-- 시 선택 -->
       <b-form-select
         size="sm"
-        class="mt-2 ml-2"
+        class="mt-2 ml-2 select"
         v-model="sidoCode"
         :options="sidos"
         @change="gugunList"
       ></b-form-select>
     </b-col>
     <!-- 군구 선택 -->
-    <b-col cols="3">
+    <b-col class="select">
       <b-form-select
         size="sm"
-        class="mt-2 ml-2"
+        class="mt-2 ml-2 select"
         v-model="gugunCode"
         :options="guguns"
         @change="dongList"
       ></b-form-select>
     </b-col>
     <!-- 동 선택 -->
-    <b-col cols="3">
+    <b-col class="select">
       <b-form-select
         size="sm"
-        class="mt-2 ml-2"
+        class="mt-2 ml-2 select"
         v-model="dongCode"
         :options="dongs"
         @change="houseCodeList"
       ></b-form-select>
     </b-col>
     <!-- 집 종류 선택-->
-    <b-col cols="3">
+    <b-col class="select">
       <b-form-select
         size="sm"
-        class="mt-2 ml-2"
+        class="mt-2 ml-2 select"
         v-model="houseCode"
         :options="houseCodes"
         @change="searchHouse"
@@ -91,6 +91,7 @@ export default {
       "CLEAR_SIDO_LIST",
       "CLEAR_DONG_LIST",
       "CLEAR_HOUSE_CODE_LIST",
+      "CLEAR_HOUSE",
     ]),
     sidoList() {
       this.CLEAR_SIDO_LIST();
@@ -119,6 +120,7 @@ export default {
       }
     },
     searchHouse() {
+      this.CLEAR_HOUSE();
       if (this.sidoCode && this.gugunCode && this.dongCode) {
         this.getHouseList([this.dongCode, this.houseCode]);
         // 아파트검색
@@ -132,4 +134,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.select {
+  padding: 0px 5px !important;
+}
+</style>

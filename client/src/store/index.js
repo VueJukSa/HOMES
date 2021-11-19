@@ -11,7 +11,7 @@ export default new Vuex.Store({
     guguns: [{ value: null, text: "선택하세요" }],
     dongs: [{ value: null, text: "선택하세요" }],
     houseCodes: [{ value: null, text: "선택하세요" }],
-    houses: [],
+    houses: [{ area: null, price: null }],
     house: null,
     userid: "",
   },
@@ -62,6 +62,9 @@ export default new Vuex.Store({
     },
     CLEAR_HOUSE_CODE_LIST(state) {
       state.houseCodes = [{ value: null, text: "선택하세요" }];
+    },
+    CLEAR_HOUSE(state) {
+      state.house = null;
     },
 
     SET_HOUSE_LIST(state, houses) {
@@ -127,7 +130,6 @@ export default new Vuex.Store({
     },
 
     getHouseList({ commit }, searchInfo) {
-      console.log(searchInfo[0], searchInfo[1]);
       const params = {
         dong: searchInfo[0],
         houseCode: searchInfo[1],
@@ -135,9 +137,19 @@ export default new Vuex.Store({
       http
         .get(`/map/houselist`, { params })
         .then((response) => {
-          console.log(response);
           //2. 비동기 진행 후 해당 데이터를 뮤테이션에게 넘김
-          // commit("GET_HOUSE_CODE_LIST", response.data);
+          let tableApt = [];
+          response.data.forEach((apt) => {
+            tableApt.push({
+              danjiname: apt.danjiname,
+              buildyear: apt.buildyear,
+              roadname: apt.roadname,
+              area: apt.area,
+              price: apt.price,
+              floor: apt.floor,
+            });
+          });
+          commit("SET_HOUSE_LIST", tableApt);
         })
         .catch((error) => {
           console.log(error);
