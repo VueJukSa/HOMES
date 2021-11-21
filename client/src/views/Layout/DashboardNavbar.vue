@@ -33,7 +33,8 @@
         class="nav-item"
         tag="li"
         title-tag="a"
-        title-classes="nav-link pr-0" v-if="userInfo"
+        title-classes="nav-link pr-0"
+        v-if="userInfo"
       >
         <a href="#" class="nav-link pr-0" @click.prevent slot="title-container">
           <b-media no-body class="align-items-center">
@@ -41,17 +42,20 @@
               <img alt="Image placeholder" src="img/theme/team-4.jpg" />
             </span>
             <b-media-body class="ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm font-weight-bold">John Snow</span>
+              <span class="mb-0 text-sm font-weight-bold">{{
+                userInfo.username
+              }}</span>
             </b-media-body>
           </b-media>
         </a>
 
         <template>
           <b-dropdown-header class="noti-title">
-            <h6 class="text-overflow m-0">{{ userInfo.username }}({{ userInfo.userid }})님
-            환영합니다.</h6>
+            <h6 class="text-overflow m-0">
+              {{ userInfo.username }}({{ userInfo.userid }})님 환영합니다.
+            </h6>
           </b-dropdown-header>
-          <b-dropdown-item href="#!">
+          <b-dropdown-item href="#/profile">
             <i class="ni ni-single-02"></i>
             <span>My profile</span>
           </b-dropdown-item>
@@ -70,7 +74,7 @@
           <div class="dropdown-divider"></div>
           <b-dropdown-item href="#!">
             <i class="ni ni-user-run"></i>
-            <span  @click.prevent="onClickLogout">Logout</span>
+            <span @click.prevent="onClickLogout">Logout</span>
           </b-dropdown-item>
         </template>
       </base-dropdown>
@@ -115,7 +119,7 @@ export default {
     };
   },
   methods: {
-     ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
+    ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
     onClickLogout() {
       this.SET_IS_LOGIN(false);
       this.SET_USER_INFO(null);
