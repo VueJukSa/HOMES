@@ -21,7 +21,7 @@
               label="Username"
               placeholder="username"
               v-model="username"
-              >{{ userInfo.username }}
+            >
             </b-form-input>
           </b-col>
           <b-col lg="6"
@@ -31,7 +31,7 @@
               label="Email address"
               placeholder="email"
               v-model="email"
-              >{{ email }}
+            >
             </b-form-input>
           </b-col>
         </b-row>
@@ -43,17 +43,7 @@
               label="First Name"
               placeholder="userid"
               v-model="userid"
-              >{{ userid }}
-            </b-form-input>
-          </b-col>
-          <b-col lg="6">
-            join date
-            <b-form-input
-              type="text"
-              label="join date"
-              placeholder="joindate"
-              v-model="joindate"
-              >{{ joindate }}
+            >
             </b-form-input>
           </b-col>
         </b-row>
@@ -140,6 +130,7 @@ import { mapState, mapMutations } from "vuex";
 const memberStore = "memberStore";
 
 export default {
+  name: "editProfileForm",
   components: {},
   computed: {
     ...mapState(memberStore, ["userInfo"]),

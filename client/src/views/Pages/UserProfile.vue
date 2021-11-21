@@ -7,7 +7,7 @@
       <span class="mask bg-gradient-success opacity-8"></span>
       <b-container fluid>
         <b-row align-h="center">
-          <b-col xl="6" class="order-xl-2 mb-5">
+          <b-col xl="6" class="order-xl-2 mt-3 mb-6">
             <user-card></user-card>
           </b-col>
         </b-row>

@@ -55,7 +55,8 @@
               {{ userInfo.username }}({{ userInfo.userid }})님 환영합니다.
             </h6>
           </b-dropdown-header>
-          <b-dropdown-item href="#/profile">
+
+          <b-dropdown-item :to="{ name: 'profile' }">
             <i class="ni ni-single-02"></i>
             <span>My profile</span>
           </b-dropdown-item>
@@ -78,6 +79,18 @@
           </b-dropdown-item>
         </template>
       </base-dropdown>
+
+      <!-- 로그인 안했을 때  -->
+      <b-navbar-nav v-else class="align-items-lg-center ml-lg-auto">
+        <b-nav-item to="/register">
+          <i class="ni ni-circle-08"></i>
+          <span class="nav-link-inner--text">Register</span>
+        </b-nav-item>
+        <b-nav-item to="/login">
+          <i class="ni ni-key-25"></i>
+          <span class="nav-link-inner--text">Login</span>
+        </b-nav-item>
+      </b-navbar-nav>
     </b-navbar-nav>
   </base-nav>
 </template>
@@ -124,7 +137,7 @@ export default {
       this.SET_IS_LOGIN(false);
       this.SET_USER_INFO(null);
       sessionStorage.removeItem("access-token");
-      if (this.$route.path != "/") this.$router.push({ name: "login" });
+      if (this.$route.path != "/") this.$router.push({ name: "dashboard" });
     },
     capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);

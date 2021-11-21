@@ -11,8 +11,8 @@
     </b-row>
 
     <b-card-header class="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-      <div class="d-flex justify-content-between">
-        <a class="btn btn-sm btn-default float-right" @click="editForm">수정</a>
+      <div class="d-flex justify-content-between float-right">
+        <a class="btn btn-sm btn-outline-info" @click="editForm">수정하기</a>
       </div>
     </b-card-header>
 
@@ -40,7 +40,7 @@
           </h5>
         </div>
         <div class="info">
-          <h5 class="h3 ml-6">
+          <h5 class="h3 ml-4">
             닉네임
             <span class="font-weight-light pl-2">{{ userInfo.username }}</span>
           </h5>
@@ -53,7 +53,7 @@
           </h5>
         </div>
         <div class="info">
-          <h5 class="h3 ml-6">
+          <h5 class="h3 ml-4">
             가입날짜
             <span class="font-weight-light pl-2">{{
               userInfo.joindate | datafilter
@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     editForm() {
-      this.$router.push({ name: "BoardWrite" });
+      this.$router.push({ name: "editProfileForm" });
     },
   },
   filters: {
