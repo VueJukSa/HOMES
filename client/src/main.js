@@ -30,4 +30,10 @@ new Vue({
   render: (h) => h(App),
   router,
   store,
+  async beforeCreate() {
+    let token = sessionStorage.getItem("access-token");
+    if (memberStore.state.userInfo == null && token) {
+      await memberStore.dispatch("getUserInfo", token);
+    }
+  },
 });

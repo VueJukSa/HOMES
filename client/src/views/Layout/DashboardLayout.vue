@@ -29,7 +29,7 @@
               }">
         </sidebar-item>
 
-        <sidebar-item
+        <sidebar-item v-if="userInfo"
               :link="{
                 name: 'User Profile',
                 path: '/profile',
@@ -45,14 +45,14 @@
                 }">
         </sidebar-item>
 
-        <sidebar-item
+        <sidebar-item v-if="!userInfo"
                   :link="{
                     name: 'Login',
                     path: '/login',
                     icon: 'ni ni-key-25 text-info'
                   }">
         </sidebar-item>
-        <sidebar-item
+        <sidebar-item v-if="!userInfo"
                   :link="{
                     name: 'Register',
                     path: '/register',
@@ -61,7 +61,7 @@
         </sidebar-item>
       </template>
 
-      <template slot="links-after">
+      <!-- <template slot="links-after">
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">Documentation</h6>
 
@@ -81,7 +81,7 @@
               <b-nav-text class="p-0">Components</b-nav-text>
           </b-nav-item>
         </b-nav>
-      </template>
+      </template> -->
     </side-bar>
     <div class="main-content">
       <dashboard-navbar :type="$route.meta.navbarType"></dashboard-navbar>
@@ -121,6 +121,11 @@
   import DashboardContent from './Content.vue';
   import { FadeTransition } from 'vue2-transitions';
 
+import { mapState, mapMutations } from "vuex";
+
+const memberStore = "memberStore";
+
+
   export default {
     components: {
       DashboardNavbar,
@@ -128,7 +133,17 @@
       DashboardContent,
       FadeTransition
     },
+  computed:{
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
+  },
     methods: {
+        ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
+    onClickLogout() {
+      this.SET_IS_LOGIN(false);
+      this.SET_USER_INFO(null);
+      sessionStorage.removeItem("access-token");
+      if (this.$route.path != "/") this.$router.push({ name: "login" });
+    },
       initScrollbar() {
         let isWindows = navigator.platform.startsWith('Win');
         if (isWindows) {

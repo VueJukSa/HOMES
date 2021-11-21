@@ -7,8 +7,7 @@
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
               <h1 class="text-white">Welcome!</h1>
-              <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for
-                free.</p>
+              <p class="text-lead text-white">WELCOME TO HAPPYHOUSE!<br/> If you would like to use this service, PLEASE LOG IN!</p>
             </b-col>
           </b-row>
         </div>
@@ -25,7 +24,7 @@
       <b-row class="justify-content-center">
         <b-col lg="5" md="7">
           <b-card no-body class="bg-secondary border-0 mb-0">
-            <b-card-header class="bg-transparent pb-5"  >
+            <!-- <b-card-header class="bg-transparent pb-5"  >
               <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
               <div class="btn-wrapper text-center">
                 <a href="#" class="btn btn-neutral btn-icon">
@@ -37,35 +36,40 @@
                   <span class="btn-inner--text">Google</span>
                 </a>
               </div>
-            </b-card-header>
+            </b-card-header> -->
             <b-card-body class="px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
+                <small>SIGN IN</small>
               </div>
               <validation-observer v-slot="{handleSubmit}" ref="formValidator">
-                <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
+                <b-form role="form" @submit.prevent="handleSubmit">
                   <base-input alternative
                               class="mb-3"
-                              name="Email"
+                              name="userid"
+                              id="userid"
                               :rules="{required: true, email: true}"
                               prepend-icon="ni ni-email-83"
-                              placeholder="Email"
-                              v-model="model.email">
+                              placeholder="ID"
+                              v-model="user.userid"
+                              @keyup.enter="confirm"
+                              >
                   </base-input>
 
                   <base-input alternative
                               class="mb-3"
-                              name="Password"
+                              id="userpwd"
                               :rules="{required: true, min: 6}"
                               prepend-icon="ni ni-lock-circle-open"
                               type="password"
                               placeholder="Password"
-                              v-model="model.password">
+                              v-model="user.userpwd"
+                              @keyup.enter="confirm"
+                              >
                   </base-input>
 
-                  <b-form-checkbox v-model="model.rememberMe">Remember me</b-form-checkbox>
+                  <!-- <b-form-checkbox v-model="model.rememberMe">Remember me</b-form-checkbox> -->
                   <div class="text-center">
-                    <base-button type="primary" native-type="submit" class="my-4">Sign in</base-button>
+                    <base-button type="primary" native-type="submit" class="my-4" @click="confirm">LOG IN</base-button>
                   </div>
                 </b-form>
               </validation-observer>
@@ -76,7 +80,7 @@
               <router-link to="/dashboard" class="text-light"><small>Forgot password?</small></router-link>
             </b-col>
             <b-col cols="6" class="text-right">
-              <router-link to="/register" class="text-light"><small>Create new account</small></router-link>
+              <router-link to="/register" class="text-light" @click="movePage"><small>Create new account</small></router-link>
             </b-col>
           </b-row>
         </b-col>
@@ -85,20 +89,53 @@
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        model: {
-          email: '',
-          password: '',
-          rememberMe: false
-        }
-      };
-    },
-    methods: {
-      onSubmit() {
-        // this will be called only after form is valid. You can do api call here to login
+import { mapState, mapActions } from "vuex";
+const memberStore = "memberStore";
+
+export default {
+  name: "login",
+  data() {
+    return {
+      user: {
+        userid: null,
+        userpwd: null,
+      },
+    };
+  },
+  computed: {
+    ...mapState(memberStore, ["isLogin", "isLoginError"]),
+  },
+  methods: {
+    ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
+    async confirm() {
+      await this.userConfirm(this.user);
+      let token = sessionStorage.getItem("access-token");
+      if (this.isLogin) {
+        await this.getUserInfo(token);
+        this.$router.push({ name: "dashboard" });
       }
-    }
-  };
+    },
+    movePage() {
+      this.$router.push({ name: "SignUp" });
+    },
+  },
+};
+
+
+  // export default {
+  //   data() {
+  //     return {
+  //       user: {
+  //         userid: '',
+  //         userpwd: '',
+  //         // rememberMe: false
+  //       }
+  //     };
+  //   },
+  //   methods: {
+  //     onSubmit() {
+  //       // this will be called only after form is valid. You can do api call here to login
+  //     }
+  //   }
+  // };
 </script>

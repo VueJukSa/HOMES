@@ -9,10 +9,9 @@
         <b-container fluid class="d-flex align-items-center">
           <b-row >
             <b-col lg="7" md="10">
-              <h1 class="display-2 text-white">Hello Jesse</h1>
-              <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your
-                work and manage your projects or assigned tasks</p>
-              <a href="#!" class="btn btn-info">Edit profile</a>
+              <h1 class="display-2 text-white">{{ userInfo.username }}({{ userInfo.userid }}) 안녕하세요</h1>
+              <p class="text-white mt-0 mb-5">{{ userInfo.username }}({{ userInfo.userid }})님의 정보를 수정할 수 있습니다.</p>
+              <a href="#!" class="btn btn-info">수정 완료</a>
             </b-col>
           </b-row>
         </b-container>
@@ -35,11 +34,21 @@
   import EditProfileForm from './UserProfile/EditProfileForm.vue';
   import UserCard from './UserProfile/UserCard.vue';
 
+import { mapState, mapMutations } from "vuex";
+
+const memberStore = "memberStore";
+
   export default {
     components: {
       EditProfileForm,
       UserCard
-    }
+    },
+    computed:{
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
+    },
+   methods: {
+    ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
+    },
   };
 </script>
 <style>
