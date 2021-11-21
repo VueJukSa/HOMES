@@ -36,7 +36,7 @@ const routes = [
         path: "/maps",
         name: "maps",
         component: () =>
-          import(/* webpackChunkName: "demo" */ "../views/GoogleMaps.vue"),
+          import(/* webpackChunkName: "demo" */ "../views/KakaoMaps.vue"),
       },
       {
         path: "/editProfileForm",

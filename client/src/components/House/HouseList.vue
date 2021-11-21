@@ -1,17 +1,31 @@
 <template>
-  <b-container v-if="houses && houses.length != 0" class="bv-example-row mt-3">
-    <house-list-row
-      v-for="(house, index) in houses"
-      :key="index"
-      :house="house"
-    />
+  <b-container class="bv-example-row mt-3">
+    <!-- <p class="mt-3">Current Page: {{ currentPage }}</p> -->
+
+    <b-table
+      v-if="rows != 0"
+      id="my-table"
+      :items="houses"
+      :per-page="perPage"
+      :current-page="currentPage"
+      @row-clicked="test"
+      responsive="sm"
+    ></b-table>
+    <b-pagination
+      id="b-pagination"
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+      aria-controls="my-table"
+      size="sm"
+    ></b-pagination>
   </b-container>
 
-  <b-container v-else class="bv-example-row mt-3">
+  <!-- <b-container v-else class="bv-example-row mt-3">
     <b-row>
       <b-col><b-alert show>주택 목록이 없습니다.</b-alert></b-col>
     </b-row>
-  </b-container>
+  </b-container> -->
 </template>
 
 <script>
@@ -24,13 +38,29 @@ export default {
     HouseListRow,
   },
   data() {
-    return {};
+    return {
+      perPage: 5,
+      currentPage: 1,
+      isColor: false,
+    };
   },
   computed: {
     ...mapState(["houses"]),
+    rows() {
+      return this.houses.length;
+    },
   },
-  created() {},
+  methods: {
+    test() {
+      console.log("클릭");
+    },
+  },
 };
 </script>
 
-<style></style>
+<style>
+table th,
+td {
+  padding: 5px 10px !important;
+}
+</style>

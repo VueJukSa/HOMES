@@ -3,7 +3,6 @@ import Vuex from "vuex";
 import http from "@/util/http-common.js";
 import createPersistedState from "vuex-persistedstate";
 
-
 Vue.use(Vuex);
 import memberStore from "@/store/modules/memberStore.js";
 
@@ -142,6 +141,9 @@ export default new Vuex.Store({
           //2. 비동기 진행 후 해당 데이터를 뮤테이션에게 넘김
           let tableApt = [];
           response.data.forEach((apt) => {
+            // 1. 위도경도 받아오기
+
+            // 2.
             tableApt.push({
               danjiname: apt.danjiname,
               buildyear: apt.buildyear,
@@ -149,6 +151,7 @@ export default new Vuex.Store({
               area: apt.area,
               price: apt.price,
               floor: apt.floor,
+              sigungu: apt.sigungu,
             });
           });
           commit("SET_HOUSE_LIST", tableApt);
@@ -177,4 +180,3 @@ export default new Vuex.Store({
   ],
 });
 // export default store;
-
