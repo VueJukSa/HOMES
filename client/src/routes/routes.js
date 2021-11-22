@@ -47,8 +47,8 @@ const routes = [
           ),
       },
       {
-        path: "/tables",
-        name: "tables",
+        path: "/board",
+        name: "board",
         component: () =>
           import(/* webpackChunkName: "demo" */ "../views/RegularTables.vue"),
       },

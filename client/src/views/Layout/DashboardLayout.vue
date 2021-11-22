@@ -43,7 +43,7 @@
         <sidebar-item
           :link="{
             name: '게시판',
-            path: '/tables',
+            path: '/board',
             icon: 'ni ni-bullet-list-67 text-red',
           }"
         >

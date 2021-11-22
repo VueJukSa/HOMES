@@ -5,6 +5,8 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 import memberStore from "@/store/modules/memberStore.js";
+import boardStore from "@/store/modules/boardStore.js";
+
 
 export default new Vuex.Store({
   state: {
@@ -286,6 +288,7 @@ export default new Vuex.Store({
   },
   modules: {
     memberStore,
+    boardStore,
   },
   // plugins: [createPersistedState()],
   plugins: [
