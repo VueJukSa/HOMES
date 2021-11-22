@@ -3,7 +3,7 @@
     <div class="overflow-auto" v-if="rows != 0">
       <b-table
         id="my-table"
-        :items="totalhousesfortable"
+        :items="totalHousesforTable"
         :per-page="perPage"
         :current-page="currentPage"
         @row-clicked="test"
