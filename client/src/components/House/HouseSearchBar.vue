@@ -72,8 +72,9 @@ export default {
       houseCode: null,
       selected: [], // Must be an array reference!
       options: [
-        { text: "매매", value: "s" },
-        { text: "전/월세", value: "m" },
+        { text: "매매", value: "buy" },
+        { text: "전세", value: "year" },
+        { text: "월세", value: "month" },
       ],
     };
   },
@@ -124,6 +125,7 @@ export default {
       }
     },
     searchHouse() {
+      console.log(this.selected);
       this.CLEAR_HOUSE();
       if (this.sidoCode && this.gugunCode && this.dongCode) {
         this.getHouseList([this.dongCode, this.houseCode]);
@@ -139,10 +141,6 @@ export default {
 </script>
 
 <style>
-.select {
-  padding: 0px !important;
-}
-
 .custom-select {
   width: 95%;
 }

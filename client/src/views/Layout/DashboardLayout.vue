@@ -5,25 +5,25 @@
       <template slot="links">
         <sidebar-item
           :link="{
-            name: 'Dashboard',
+            name: '홈',
             path: '/dashboard',
             icon: 'ni ni-tv-2 text-primary',
           }"
         >
         </sidebar-item>
 
-        <sidebar-item
+        <!-- <sidebar-item
           :link="{
             name: 'Icons',
             path: '/icons',
             icon: 'ni ni-planet text-blue',
           }"
         >
-        </sidebar-item>
+        </sidebar-item> -->
 
         <sidebar-item
           :link="{
-            name: 'Maps',
+            name: '주택 검색',
             path: '/maps',
             icon: 'ni ni-pin-3 text-orange',
           }"
@@ -33,7 +33,7 @@
         <sidebar-item
           v-if="userInfo"
           :link="{
-            name: 'User Profile',
+            name: '내정보',
             path: '/profile',
             icon: 'ni ni-single-02 text-yellow',
           }"
@@ -42,7 +42,7 @@
 
         <sidebar-item
           :link="{
-            name: 'Tables',
+            name: '게시판',
             path: '/tables',
             icon: 'ni ni-bullet-list-67 text-red',
           }"

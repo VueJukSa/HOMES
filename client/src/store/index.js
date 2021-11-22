@@ -8,10 +8,10 @@ import memberStore from "@/store/modules/memberStore.js";
 
 export default new Vuex.Store({
   state: {
-    sidos: [{ value: null, text: "선택하세요" }],
-    guguns: [{ value: null, text: "선택하세요" }],
-    dongs: [{ value: null, text: "선택하세요" }],
-    houseCodes: [{ value: null, text: "선택하세요" }],
+    sidos: [{ value: null, text: "시" }],
+    guguns: [{ value: null, text: "구" }],
+    dongs: [{ value: null, text: "동" }],
+    houseCodes: [{ value: null, text: "집종류" }],
     houses: [],
     housesfortable: [],
     house: null,
@@ -54,16 +54,16 @@ export default new Vuex.Store({
     },
 
     CLEAR_GUGUN_LIST(state) {
-      state.guguns = [{ value: null, text: "선택하세요" }];
+      state.guguns = [{ value: null, text: "구" }];
     },
     CLEAR_SIDO_LIST(state) {
-      state.sidos = [{ value: null, text: "선택하세요" }];
+      state.sidos = [{ value: null, text: "시" }];
     },
     CLEAR_DONG_LIST(state) {
-      state.dongs = [{ value: null, text: "선택하세요" }];
+      state.dongs = [{ value: null, text: "동" }];
     },
     CLEAR_HOUSE_CODE_LIST(state) {
-      state.houseCodes = [{ value: null, text: "선택하세요" }];
+      state.houseCodes = [{ value: null, text: "집종류" }];
     },
     CLEAR_HOUSE(state) {
       state.house = null;

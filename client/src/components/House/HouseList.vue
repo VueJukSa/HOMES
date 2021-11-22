@@ -1,8 +1,7 @@
 <template>
   <b-container class="bv-example-row mt-3 ml-2">
-    <div class="overflow-auto">
+    <div class="overflow-auto" v-if="rows != 0">
       <b-table
-        v-if="rows != 0"
         id="my-table"
         :items="housesfortable"
         :per-page="perPage"
@@ -10,6 +9,7 @@
         @row-clicked="test"
         responsive="sm"
       ></b-table>
+
       <b-pagination
         id="b-pagination"
         v-model="currentPage"
@@ -20,13 +20,12 @@
         align="center"
       ></b-pagination>
     </div>
+    <div v-else class="bv-example-row mt-3">
+      <b-row>
+        <b-col><b-alert show variant="info">sorry no house.</b-alert></b-col>
+      </b-row>
+    </div>
   </b-container>
-
-  <!-- <b-container v-else class="bv-example-row mt-3">
-    <b-row>
-      <b-col><b-alert show>주택 목록이 없습니다.</b-alert></b-col>
-    </b-row>
-  </b-container> -->
 </template>
 
 <script>
