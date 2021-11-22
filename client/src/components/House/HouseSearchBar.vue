@@ -1,59 +1,63 @@
 <template>
-  <b-row class="mt-1 mb-1 pr-2 pl-1 text-center">
-    <b-col class="select">
-      <!-- 시 선택 -->
-      <b-form-select
-        size="sm"
-        class="mt-2 ml-2 select"
-        v-model="sidoCode"
-        :options="sidos"
-        @change="gugunList"
-      ></b-form-select>
-    </b-col>
-    <!-- 군구 선택 -->
-    <b-col class="select">
-      <b-form-select
-        size="sm"
-        class="mt-2 ml-2 select"
-        v-model="gugunCode"
-        :options="guguns"
-        @change="dongList"
-      ></b-form-select>
-    </b-col>
-    <!-- 동 선택 -->
-    <b-col class="select">
-      <b-form-select
-        size="sm"
-        class="mt-2 ml-2 select"
-        v-model="dongCode"
-        :options="dongs"
-        @change="houseCodeList"
-      ></b-form-select>
-    </b-col>
-    <!-- 집 종류 선택-->
-    <b-col class="select">
-      <b-form-select
-        size="sm"
-        class="mt-2 ml-2 select"
-        v-model="houseCode"
-        :options="houseCodes"
-        @change="searchHouse"
-      ></b-form-select>
-    </b-col>
-    <b-col>
-      <b-form-group v-slot="{ ariaDescribedby }">
-        <b-form-checkbox-group
-          id="house-sell-tipe-checkbox-group"
-          v-model="selected"
-          :options="options"
-          :aria-describedby="ariaDescribedby"
-          name="flavour-1"
+  <div>
+    <b-row class="mt-1 mb-1 pr-2 text-center">
+      <b-col class="select a">
+        <!-- 시 선택 -->
+        <b-form-select
           size="sm"
+          class="mt-2 ml-2"
+          v-model="sidoCode"
+          :options="sidos"
+          @change="gugunList"
+        ></b-form-select>
+      </b-col>
+      <!-- 군구 선택 -->
+      <b-col class="select">
+        <b-form-select
+          size="sm"
+          class="mt-2 ml-2"
+          v-model="gugunCode"
+          :options="guguns"
+          @change="dongList"
+        ></b-form-select>
+      </b-col>
+      <!-- 동 선택 -->
+      <b-col class="select">
+        <b-form-select
+          size="sm"
+          class="mt-2 ml-2"
+          v-model="dongCode"
+          :options="dongs"
+          @change="houseCodeList"
+        ></b-form-select>
+      </b-col>
+      <!-- 집 종류 선택-->
+      <b-col class="select">
+        <b-form-select
+          size="sm"
+          class="mt-2 ml-2"
+          v-model="houseCode"
+          :options="houseCodes"
           @change="searchHouse"
-        ></b-form-checkbox-group>
-      </b-form-group>
-    </b-col>
-  </b-row>
+        ></b-form-select>
+      </b-col>
+    </b-row>
+    <b-row class="text-right">
+      <b-col>
+        <b-form-group v-slot="{ ariaDescribedby }">
+          <b-form-checkbox-group
+            id="house-sell-tipe-checkbox-group"
+            v-model="selected"
+            :options="options"
+            :aria-describedby="ariaDescribedby"
+            name="flavour-1"
+            size="sm"
+            @change="searchHouse"
+          ></b-form-checkbox-group>
+        </b-form-group>
+      </b-col>
+    </b-row>
+  </div>
 </template>
 
 <script>
@@ -136,6 +140,10 @@ export default {
 
 <style>
 .select {
-  padding: 0px 5px !important;
+  padding: 0px !important;
+}
+
+.custom-select {
+  width: 95%;
 }
 </style>

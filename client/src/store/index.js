@@ -12,7 +12,8 @@ export default new Vuex.Store({
     guguns: [{ value: null, text: "선택하세요" }],
     dongs: [{ value: null, text: "선택하세요" }],
     houseCodes: [{ value: null, text: "선택하세요" }],
-    houses: [{ area: null, price: null }],
+    houses: [],
+    housesfortable: [],
     house: null,
     userid: "",
   },
@@ -70,6 +71,9 @@ export default new Vuex.Store({
 
     SET_HOUSE_LIST(state, houses) {
       state.houses = houses;
+    },
+    SET_HOUSE_LIST_TABLE(state, houses) {
+      state.housesfortable = houses;
     },
     SET_DETAIL_HOUSE(state, house) {
       state.house = house;
@@ -140,21 +144,26 @@ export default new Vuex.Store({
         .then((response) => {
           //2. 비동기 진행 후 해당 데이터를 뮤테이션에게 넘김
           let tableApt = [];
+          let housestablemain = [];
           response.data.forEach((apt) => {
-            // 1. 위도경도 받아오기
+            housestablemain.push({
+              danjiname: apt.danjiname,
+              roadname: apt.roadname,
+            });
 
-            // 2.
             tableApt.push({
               danjiname: apt.danjiname,
-              buildyear: apt.buildyear,
+              //buildyear: apt.buildyear,
               roadname: apt.roadname,
-              area: apt.area,
+              //area: apt.area,
               price: apt.price,
-              floor: apt.floor,
+              //floor: apt.floor,
               sigungu: apt.sigungu,
             });
           });
+          console.log();
           commit("SET_HOUSE_LIST", tableApt);
+          commit("SET_HOUSE_LIST_TABLE", housestablemain);
         })
         .catch((error) => {
           console.log(error);

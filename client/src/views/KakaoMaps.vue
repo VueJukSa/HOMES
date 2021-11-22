@@ -64,7 +64,7 @@
 
     <b-container fluid class="mt--7">
       <b-row>
-        <b-col>
+        <b-col cols="5">
           <b-card no-body class="border-0">
             <div style="height: 600px">
               <b-row>
@@ -74,7 +74,7 @@
               </b-row>
 
               <b-row>
-                <b-col align="left" cols="3">
+                <b-col>
                   <house-list />
                 </b-col>
               </b-row>

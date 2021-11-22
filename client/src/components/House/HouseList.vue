@@ -1,24 +1,25 @@
 <template>
-  <b-container class="bv-example-row mt-3">
-    <!-- <p class="mt-3">Current Page: {{ currentPage }}</p> -->
-
-    <b-table
-      v-if="rows != 0"
-      id="my-table"
-      :items="houses"
-      :per-page="perPage"
-      :current-page="currentPage"
-      @row-clicked="test"
-      responsive="sm"
-    ></b-table>
-    <b-pagination
-      id="b-pagination"
-      v-model="currentPage"
-      :total-rows="rows"
-      :per-page="perPage"
-      aria-controls="my-table"
-      size="sm"
-    ></b-pagination>
+  <b-container class="bv-example-row mt-3 ml-2">
+    <div class="overflow-auto">
+      <b-table
+        v-if="rows != 0"
+        id="my-table"
+        :items="housesfortable"
+        :per-page="perPage"
+        :current-page="currentPage"
+        @row-clicked="test"
+        responsive="sm"
+      ></b-table>
+      <b-pagination
+        id="b-pagination"
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="perPage"
+        aria-controls="my-table"
+        size="sm"
+        align="center"
+      ></b-pagination>
+    </div>
   </b-container>
 
   <!-- <b-container v-else class="bv-example-row mt-3">
@@ -45,7 +46,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["houses"]),
+    ...mapState(["houses", "housesfortable"]),
     rows() {
       return this.houses.length;
     },
