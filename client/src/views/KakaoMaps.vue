@@ -143,12 +143,11 @@ export default {
       let cy = 0;
       let cnt = 0;
 
-      console.log("호출");
       // 주소-좌표 변환 객체를 생성합니다
       const geocoder = new kakao.maps.services.Geocoder();
       // 주소로 좌표를 검색합니다
 
-      this.houses.forEach((house) => {
+      this.totalHousesforTable.forEach((house) => {
         // console.log(`${house.sigungu} ${house.roadname}`);
         geocoder.addressSearch(
           `${house.시군구} ${house.도로명}`,

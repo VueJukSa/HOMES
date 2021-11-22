@@ -99,6 +99,8 @@ export default {
       "CLEAR_DONG_LIST",
       "CLEAR_HOUSE_CODE_LIST",
       "CLEAR_HOUSE",
+      "CLEAR_TOTAL_HOUSE_SIMPLE_LIST",
+      "CLEAR_TOTAL_HOUSE_DETAIL_LIST",
     ]),
     sidoList() {
       this.CLEAR_SIDO_LIST();
@@ -128,6 +130,8 @@ export default {
     },
     searchHouse() {
       this.CLEAR_HOUSE();
+      this.CLEAR_TOTAL_HOUSE_SIMPLE_LIST();
+      this.CLEAR_TOTAL_HOUSE_DETAIL_LIST();
       this.selected.forEach((select) => {
         if (this.sidoCode && this.gugunCode && this.dongCode) {
           if (select === "buy") {

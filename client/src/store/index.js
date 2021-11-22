@@ -84,18 +84,24 @@ export default new Vuex.Store({
     CLEAR_HOUSE(state) {
       state.house = null;
     },
+    CLEAR_TOTAL_HOUSE_SIMPLE_LIST(state) {
+      state.totalHouses = [];
+    },
+    CLEAR_TOTAL_HOUSE_DETAIL_LIST(state) {
+      state.totalHousesforTable = [];
+    },
 
     SET_HOUSE_DETAIL_LIST_BUY(state, houses) {
       state.housesBuy = houses;
-      state.totalHouses.push(houses);
+      state.totalHouses.concat(houses);
     },
     SET_HOUSE_DETAIL_LIST_YEAR(state, houses) {
       state.housesYear = houses;
-      state.totalHouses.push(houses);
+      state.totalHouses.concat(houses);
     },
     SET_HOUSE_DETAIL_LIST_MONTH(state, houses) {
       state.housesMonth = houses;
-      state.totalHouses.push(houses);
+      state.totalHouses.concat(houses);
     },
 
     SET_HOUSE_SIMPLE_LIST_BUY(state, houses) {
