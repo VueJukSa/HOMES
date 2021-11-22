@@ -3,7 +3,7 @@
     <div class="overflow-auto" v-if="rows != 0">
       <b-table
         id="my-table"
-        :items="housesfortable"
+        :items="totalhousesfortable"
         :per-page="perPage"
         :current-page="currentPage"
         @row-clicked="test"
@@ -39,15 +39,26 @@ export default {
   },
   data() {
     return {
-      perPage: 5,
+      perPage: 10,
       currentPage: 1,
       isColor: false,
     };
   },
   computed: {
-    ...mapState(["houses", "housesfortable"]),
+    ...mapState([
+      "housesBuy",
+      "housesYear",
+      "housesMonth",
+      "housesfortableBuy",
+      "housesfortableYear",
+      "housesfortableMonth",
+      "totalHouses",
+      "totalHousesforTable",
+    ]),
     rows() {
-      return this.houses.length;
+      return (
+        this.housesBuy.length + this.housesYear.length + this.housesMonth.length
+      );
     },
   },
   methods: {

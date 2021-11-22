@@ -12,8 +12,22 @@ export default new Vuex.Store({
     guguns: [{ value: null, text: "구" }],
     dongs: [{ value: null, text: "동" }],
     houseCodes: [{ value: null, text: "집종류" }],
-    houses: [],
-    housesfortable: [],
+    totalHouses: [],
+    // 매매
+    housesBuy: [],
+    // 전세
+    housesYear: [],
+    // 월세
+    housesMonth: [],
+
+    totalHousesforTable: [],
+    // 테이블용 간단 버전
+    housesfortableBuy: [],
+    // 테이블용 간단 버전
+    housesfortableYear: [],
+    // 테이블용 간단 버전
+    housesfortableMonth: [],
+
     house: null,
     userid: "",
   },
@@ -69,12 +83,32 @@ export default new Vuex.Store({
       state.house = null;
     },
 
-    SET_HOUSE_LIST(state, houses) {
-      state.houses = houses;
+    SET_HOUSE_DETAIL_LIST_BUY(state, houses) {
+      state.housesBuy = houses;
+      state.totalHouses.push(houses);
     },
-    SET_HOUSE_LIST_TABLE(state, houses) {
-      state.housesfortable = houses;
+    SET_HOUSE_DETAIL_LIST_YEAR(state, houses) {
+      state.housesYear = houses;
+      state.totalHouses.push(houses);
     },
+    SET_HOUSE_DETAIL_LIST_MONTH(state, houses) {
+      state.housesMonth = houses;
+      state.totalHouses.push(houses);
+    },
+
+    SET_HOUSE_SIMPLE_LIST_BUY(state, houses) {
+      state.housesfortableBuy = houses;
+      state.totalHousesforTable.concat(houses);
+    },
+    SET_HOUSE_SIMPLE_LIST_YEAR(state, houses) {
+      state.housesfortableYear = houses;
+      state.totalHousesforTable.concat(houses);
+    },
+    SET_HOUSE_SIMPLE_LIST_MONTH(state, houses) {
+      state.housesfortableMonth = houses;
+      state.totalHousesforTable.concat(houses);
+    },
+
     SET_DETAIL_HOUSE(state, house) {
       state.house = house;
     },
@@ -134,36 +168,109 @@ export default new Vuex.Store({
         });
     },
 
-    getHouseList({ commit }, searchInfo) {
+    getHouseBuy({ commit }, searchInfo) {
       const params = {
         dong: searchInfo[0],
         houseCode: searchInfo[1],
+        contract: searchInfo[2],
       };
       http
-        .get(`/map/houselist`, { params })
+        .get(`/map/houselist/apt`, { params })
         .then((response) => {
           //2. 비동기 진행 후 해당 데이터를 뮤테이션에게 넘김
-          let tableApt = [];
-          let housestablemain = [];
+          let simple = [];
+          let detail = [];
           response.data.forEach((apt) => {
-            housestablemain.push({
-              danjiname: apt.danjiname,
-              roadname: apt.roadname,
+            simple.push({
+              아파트이름: apt.단지명,
+              도로명: apt.도로명,
+              계약: "매매",
             });
 
-            tableApt.push({
-              danjiname: apt.danjiname,
-              //buildyear: apt.buildyear,
-              roadname: apt.roadname,
-              //area: apt.area,
-              price: apt.price,
-              //floor: apt.floor,
-              sigungu: apt.sigungu,
+            detail.push({
+              시군구: apt.시군구,
+              아파트이름: apt.단지명,
+              도로명: apt.도로명,
+              거래금액: apt.거래금액,
+              층: apt.층,
+              건축년도: apt.건축년도,
+              전용면적: apt.전용면적,
             });
           });
-          console.log();
-          commit("SET_HOUSE_LIST", tableApt);
-          commit("SET_HOUSE_LIST_TABLE", housestablemain);
+          commit("SET_HOUSE_SIMPLE_LIST_BUY", simple);
+          commit("SET_HOUSE_DETAIL_LIST_BUY", detail);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getHouseYear({ commit }, searchInfo) {
+      const params = {
+        dong: searchInfo[0],
+        houseCode: searchInfo[1],
+        contract: searchInfo[2],
+      };
+      http
+        .get(`/map/houselist/apt`, { params })
+        .then((response) => {
+          //2. 비동기 진행 후 해당 데이터를 뮤테이션에게 넘김
+          let simple = [];
+          let detail = [];
+          response.data.forEach((apt) => {
+            simple.push({
+              아파트이름: apt.단지명,
+              도로명: apt.도로명,
+              계약: "전세",
+            });
+
+            detail.push({
+              시군구: apt.시군구,
+              아파트이름: apt.단지명,
+              도로명: apt.도로명,
+              층: apt.층,
+              건축년도: apt.건축년도,
+              전용면적: apt.전용면적,
+              보증금: apt.보증금,
+            });
+          });
+          commit("SET_HOUSE_SIMPLE_LIST_YEAR", simple);
+          commit("SET_HOUSE_DETAIL_LIST_YEAR", detail);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getHouseMonth({ commit }, searchInfo) {
+      const params = {
+        dong: searchInfo[0],
+        houseCode: searchInfo[1],
+        contract: searchInfo[2],
+      };
+      http
+        .get(`/map/houselist/apt`, { params })
+        .then((response) => {
+          let simple = [];
+          let detail = [];
+          response.data.forEach((apt) => {
+            simple.push({
+              아파트이름: apt.단지명,
+              도로명: apt.도로명,
+              계약: "월세",
+            });
+
+            detail.push({
+              시군구: apt.시군구,
+              아파트이름: apt.단지명,
+              도로명: apt.도로명,
+              층: apt.층,
+              건축년도: apt.건축년도,
+              전용면적: apt.전용면적,
+              보증금: apt.보증금,
+              월세: apt.월세,
+            });
+          });
+          commit("SET_HOUSE_SIMPLE_LIST_MONTH", simple);
+          commit("SET_HOUSE_DETAIL_LIST_MONTH", detail);
         })
         .catch((error) => {
           console.log(error);

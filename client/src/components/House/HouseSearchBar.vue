@@ -89,7 +89,9 @@ export default {
       "getGugun",
       "getDong",
       "getHouseCode",
-      "getHouseList",
+      "getHouseBuy",
+      "getHouseYear",
+      "getHouseMonth",
     ]),
     ...mapMutations([
       "CLEAR_GUGUN_LIST",
@@ -125,12 +127,18 @@ export default {
       }
     },
     searchHouse() {
-      console.log(this.selected);
       this.CLEAR_HOUSE();
-      if (this.sidoCode && this.gugunCode && this.dongCode) {
-        this.getHouseList([this.dongCode, this.houseCode]);
-        // 아파트검색
-      }
+      this.selected.forEach((select) => {
+        if (this.sidoCode && this.gugunCode && this.dongCode) {
+          if (select === "buy") {
+            this.getHouseBuy([this.dongCode, this.houseCode, select]);
+          } else if (select === "year") {
+            this.getHouseYear([this.dongCode, this.houseCode, select]);
+          } else {
+            this.getHouseMonth([this.dongCode, this.houseCode, select]);
+          }
+        }
+      });
     },
   },
   created() {
