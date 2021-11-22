@@ -66,7 +66,7 @@
       <b-row>
         <b-col cols="5">
           <b-card no-body class="border-0">
-            <div style="height: 600px">
+            <div style="height: 500px">
               <b-row>
                 <b-col>
                   <house-search-bar />
@@ -83,7 +83,7 @@
         </b-col>
         <b-col>
           <b-card no-body class="border-0">
-            <div id="map-custom" class="map-canvas" style="height: 600px"></div>
+            <div id="map-custom" class="map-canvas" style="height: 500px"></div>
           </b-card>
         </b-col>
       </b-row>
@@ -114,7 +114,7 @@ export default {
   },
   computed: {
     // map 사용 시
-    ...mapState(["totalHousesforTable"]),
+    ...mapState(["totalHouses"]),
   },
   mounted() {
     if (window.kakao && window.kakao.maps) {
@@ -129,7 +129,7 @@ export default {
     }
   },
   watch: {
-    houses: "initMap",
+    totalHouses: "initMap",
   },
   methods: {
     initMap() {
@@ -139,15 +139,16 @@ export default {
         level: 5,
       };
       const map = new kakao.maps.Map(container, options);
-      let cx = 0;
-      let cy = 0;
+      let maxX = -1;
+      let maxY = -1;
+      let minX = 180;
+      let minY = 180;
       let cnt = 0;
 
       // 주소-좌표 변환 객체를 생성합니다
       const geocoder = new kakao.maps.services.Geocoder();
       // 주소로 좌표를 검색합니다
-
-      this.totalHousesforTable.forEach((house) => {
+      this.totalHouses.forEach((house) => {
         // console.log(`${house.sigungu} ${house.roadname}`);
         geocoder.addressSearch(
           `${house.시군구} ${house.도로명}`,
@@ -164,8 +165,11 @@ export default {
               // 마커 이미지를 생성합니다
               var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
               console.log(result[0].y, result[0].x);
-              cx += parseFloat(result[0].x);
-              cy += parseFloat(result[0].y);
+
+              maxX = Math.max(maxX, parseFloat(result[0].x));
+              minX = Math.min(minX, parseFloat(result[0].x));
+              maxY = Math.max(maxY, parseFloat(result[0].y));
+              minY = Math.min(minY, parseFloat(result[0].y));
               cnt++;
               // 마커를 생성합니다
               var marker = new kakao.maps.Marker({
@@ -174,9 +178,12 @@ export default {
                 title: house.단지명, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                 image: markerImage, // 마커 이미지
               });
-              if (cnt > 0) {
-                console.log(cy / cnt, cx / cnt, cnt);
-                map.setCenter(new kakao.maps.LatLng(cy / cnt, cx / cnt));
+              if (cnt == 1) {
+                map.setCenter(new kakao.maps.LatLng(maxY, maxX));
+              } else if (cnt > 1) {
+                map.setCenter(
+                  new kakao.maps.LatLng((maxY + minY) / 2, (maxX + minX) / 2)
+                );
               }
             }
           }

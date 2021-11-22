@@ -52,6 +52,7 @@
             :aria-describedby="ariaDescribedby"
             name="flavour-1"
             size="sm"
+            switches
             @change="searchHouse"
           ></b-form-checkbox-group>
         </b-form-group>
@@ -70,7 +71,7 @@ export default {
       gugunCode: null,
       dongCode: null,
       houseCode: null,
-      selected: [], // Must be an array reference!
+      selected: ["buy", "year", "month"], // Must be an array reference!
       options: [
         { text: "매매", value: "buy" },
         { text: "전세", value: "year" },
@@ -81,7 +82,13 @@ export default {
   // 보통 state에서 데이터를 가져올 때 사용한다
   computed: {
     // map 사용 시
-    ...mapState(["sidos", "guguns", "dongs", "houseCodes"]),
+    ...mapState([
+      "sidos",
+      "guguns",
+      "dongs",
+      "houseCodes",
+      "housesfortableBuy",
+    ]),
   },
   methods: {
     ...mapActions([

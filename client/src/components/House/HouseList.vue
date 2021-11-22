@@ -22,7 +22,7 @@
     </div>
     <div v-else class="bv-example-row mt-3">
       <b-row>
-        <b-col><b-alert show variant="info">sorry no house.</b-alert></b-col>
+        <b-col><b-alert show variant="white"></b-alert></b-col>
       </b-row>
     </div>
   </b-container>
@@ -56,9 +56,7 @@ export default {
       "totalHousesforTable",
     ]),
     rows() {
-      return (
-        this.housesBuy.length + this.housesYear.length + this.housesMonth.length
-      );
+      return this.totalHousesforTable.length;
     },
   },
   methods: {

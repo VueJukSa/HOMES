@@ -7,7 +7,6 @@ Vue.use(Vuex);
 import memberStore from "@/store/modules/memberStore.js";
 import boardStore from "@/store/modules/boardStore.js";
 
-
 export default new Vuex.Store({
   state: {
     sidos: [{ value: null, text: "시" }],
@@ -93,28 +92,28 @@ export default new Vuex.Store({
 
     SET_HOUSE_DETAIL_LIST_BUY(state, houses) {
       state.housesBuy = houses;
-      state.totalHouses.concat(houses);
+      state.totalHouses = state.totalHouses.concat(houses);
     },
     SET_HOUSE_DETAIL_LIST_YEAR(state, houses) {
       state.housesYear = houses;
-      state.totalHouses.concat(houses);
+      state.totalHouses = state.totalHouses.concat(houses);
     },
     SET_HOUSE_DETAIL_LIST_MONTH(state, houses) {
       state.housesMonth = houses;
-      state.totalHouses.concat(houses);
+      state.totalHouses = state.totalHouses.concat(houses);
     },
 
     SET_HOUSE_SIMPLE_LIST_BUY(state, houses) {
       state.housesfortableBuy = houses;
-      state.totalHousesforTable.concat(houses);
+      state.totalHousesforTable = state.totalHousesforTable.concat(houses);
     },
     SET_HOUSE_SIMPLE_LIST_YEAR(state, houses) {
       state.housesfortableYear = houses;
-      state.totalHousesforTable.concat(houses);
+      state.totalHousesforTable = state.totalHousesforTable.concat(houses);
     },
     SET_HOUSE_SIMPLE_LIST_MONTH(state, houses) {
       state.housesfortableMonth = houses;
-      state.totalHousesforTable.concat(houses);
+      state.totalHousesforTable = state.totalHousesforTable.concat(houses);
     },
 
     SET_DETAIL_HOUSE(state, house) {
@@ -287,6 +286,9 @@ export default new Vuex.Store({
     datailHouse({ commit }, house) {
       // 나중에는 일련번호로 집에대한 정보 가져와야한다
       commit("SET_DETAIL_HOUSE", house);
+    },
+    houseListSum({ commit }) {
+      commit("SET_ALL_HOUSE_LIST");
     },
     // login({ commit }, userid) {
     //   commit("SET_USERID", userid);
