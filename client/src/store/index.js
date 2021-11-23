@@ -181,27 +181,40 @@ export default new Vuex.Store({
         houseCode: searchInfo[1],
         contract: searchInfo[2],
       };
+
+      let houseType;
+
+      if (searchInfo[1] == 1) {
+        houseType = `apt`;
+      } else if (searchInfo[1] == 2) {
+        houseType = `office`;
+      } else if (searchInfo[1] == 3) {
+        houseType = `yeonrip`;
+      } else {
+        houseType = `dandok`;
+      }
       http
-        .get(`/map/houselist/apt`, { params })
+        .get(`/map/houselist/${houseType}`, { params })
         .then((response) => {
+          console.log(response.data);
           //2. 비동기 진행 후 해당 데이터를 뮤테이션에게 넘김
           let simple = [];
           let detail = [];
-          response.data.forEach((apt) => {
+          response.data.forEach((house) => {
             simple.push({
-              아파트이름: apt.단지명,
-              도로명: apt.도로명,
+              아파트이름: house.단지명,
+              도로명: house.도로명,
               계약: "매매",
             });
 
             detail.push({
-              시군구: apt.시군구,
-              아파트이름: apt.단지명,
-              도로명: apt.도로명,
-              거래금액: apt.거래금액,
-              층: apt.층,
-              건축년도: apt.건축년도,
-              전용면적: apt.전용면적,
+              시군구: house.시군구,
+              아파트이름: house.단지명,
+              도로명: house.도로명,
+              거래금액: house.거래금액,
+              층: house.층,
+              건축년도: house.건축년도,
+              전용면적: house.전용면적,
             });
           });
           commit("SET_HOUSE_SIMPLE_LIST_BUY", simple);
@@ -217,8 +230,19 @@ export default new Vuex.Store({
         houseCode: searchInfo[1],
         contract: searchInfo[2],
       };
+      let houseType;
+
+      if (searchInfo[1] == 1) {
+        houseType = `apt`;
+      } else if (searchInfo[1] == 2) {
+        houseType = `office`;
+      } else if (searchInfo[1] == 3) {
+        houseType = `yeonrip`;
+      } else {
+        houseType = `dandok`;
+      }
       http
-        .get(`/map/houselist/apt`, { params })
+        .get(`/map/houselist/${houseType}`, { params })
         .then((response) => {
           //2. 비동기 진행 후 해당 데이터를 뮤테이션에게 넘김
           let simple = [];
@@ -253,8 +277,19 @@ export default new Vuex.Store({
         houseCode: searchInfo[1],
         contract: searchInfo[2],
       };
+      let houseType;
+
+      if (searchInfo[1] == 1) {
+        houseType = `apt`;
+      } else if (searchInfo[1] == 2) {
+        houseType = `office`;
+      } else if (searchInfo[1] == 3) {
+        houseType = `yeonrip`;
+      } else {
+        houseType = `dandok`;
+      }
       http
-        .get(`/map/houselist/apt`, { params })
+        .get(`/map/houselist/${houseType}`, { params })
         .then((response) => {
           let simple = [];
           let detail = [];

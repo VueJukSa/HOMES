@@ -51,8 +51,6 @@ export default {
   data() {
     return {
       article: {
-        articleno: 0,
-        userid: "",
         subject: "",
         content: "",
       },
@@ -100,11 +98,12 @@ export default {
       // this.$router.push({ name: "BoardList" });
     },
     registArticleAnswer() {
+      console.log(this.article.articleno);
       http
         .post(`/board/answer`, {
           userid: this.userInfo.userid,
           content: this.article.content,
-          articleno: this.article.articleno,
+          articleno: this.$route.params.articleno,
         })
         .then(({ data }) => {
           let msg = "댓글 등록 처리시 문제가 발생했습니다.";
@@ -118,7 +117,7 @@ export default {
     modifyArticle() {
       http
         .put(`/board`, {
-          articleno: this.article.articleno,
+          articleno: this.$route.params.articleno,
           userid: this.userInfo.userid,
           subject: this.article.subject,
           content: this.article.content,
