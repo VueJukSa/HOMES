@@ -24,7 +24,7 @@ const onlyAuthUser = async (to, from, next) => {
   }
   if (checkUserInfo === null) {
     next({ name: "login" });
-    router.push({ name: "login" });
+    // router.push({ name: "login" });
   } else {
     next();
   }

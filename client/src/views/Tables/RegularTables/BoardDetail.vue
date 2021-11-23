@@ -1,8 +1,14 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
-    <b-col> <board-view></board-view></b-col>
-    <b-col> <board-view-answer></board-view-answer></b-col>
-    <b-col> <board-answer-form></board-answer-form> </b-col>
+    <b-row>
+      <b-col> <board-view></board-view></b-col>
+    </b-row>
+    <b-row>
+      <b-col> <board-view-answer></board-view-answer></b-col
+    ></b-row>
+    <b-row>
+      <b-col> <board-answer-form></board-answer-form> </b-col>
+    </b-row>
   </b-container>
 </template>
 

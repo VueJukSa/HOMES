@@ -8,8 +8,8 @@
     >
       <b-col>
         <b-card
-          :header-html="`</h3><div><h6> ${answer.userid} </div>
-          <div>${answer.regtime}</h6></div>`"
+          :header-html="`</h3><div><h3> ${answer.userid}</h3> </div>
+          <div><h6>작성시간:${answer.regtime}</h6></div>`"
           class="mb-2"
           border-variant="dark"
           no-body
@@ -17,13 +17,15 @@
           <b-card-body class="text-left">
             <div>{{ answer.content }}</div>
           </b-card-body>
-          <b-button
-            @click="deleteAnswer(answer.answerno)"
-            type="reset"
-            variant="danger"
-            class="m-1"
-            >삭제</b-button
-          >
+          <b-card-footer v-if="userInfo.userid == answer.userid">
+            <b-button
+              @click="deleteAnswer(answer.answerno)"
+              type="reset"
+              variant="danger"
+              class="m-1 btn float-right"
+              >삭제</b-button
+            >
+          </b-card-footer>
         </b-card>
       </b-col>
     </b-row>
@@ -31,9 +33,9 @@
 </template>
 
 <script>
-// import moment from "moment";
 import http from "@/util/http-common";
-
+import { mapState } from "vuex";
+const memberStore = "memberStore";
 export default {
   data() {
     return {
@@ -46,6 +48,7 @@ export default {
         return this.answer.content.split("\n").join("<br>");
       return "";
     },
+    ...mapState(memberStore, ["userInfo"]),
   },
   created() {
     http

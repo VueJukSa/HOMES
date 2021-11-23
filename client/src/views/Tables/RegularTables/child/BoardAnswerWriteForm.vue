@@ -1,35 +1,50 @@
 <template>
-  <b-container class="bv-example-row mt-3">
-    <b-row class="mb-1">
-      <b-col style="text-align: left">
-        <b-form @submit="onSubmit" @reset="onReset">
-          <b-form-group id="content-group" label="내용:" label-for="content">
-            <b-form-textarea
-              id="content"
-              v-model="article.content"
-              placeholder="댓글 입력..."
-              rows="10"
-              max-rows="15"
-            ></b-form-textarea>
-          </b-form-group>
+  <b-card no-body id="memo">
+    <b-container class="bv-example-row mt-3">
+      <b-row>
+        <b-media no-body class="align-items-center ml-3 mb-2 media">
+          <span class="avatar avatar-sm rounded-circle">
+            <img alt="Image placeholder" src="img/theme/team-4.jpg" />
+          </span>
+          <b-media-body class="ml-2 d-none d-lg-block">
+            <span class="mb-0 text-sm font-weight-bold">{{
+              userInfo.username
+            }}</span>
+          </b-media-body>
+        </b-media>
+      </b-row>
+      <b-row class="mb-1">
+        <b-col style="text-align: left">
+          <b-form @submit="onSubmit" @reset="onReset">
+            <b-form-group id="content-group" label-for="content">
+              <b-form-textarea
+                id="content"
+                v-model="article.content"
+                placeholder=""
+                rows="4"
+                max-rows="15"
+              ></b-form-textarea>
+            </b-form-group>
 
-          <b-button
-            type="submit"
-            variant="primary"
-            class="m-1"
-            v-if="this.type === 'register'"
-            >댓글달기</b-button
-          >
-          <b-button type="reset" variant="danger" class="m-1">초기화</b-button>
-        </b-form>
-      </b-col>
-    </b-row>
-  </b-container>
+            <b-button
+              type="submit"
+              variant="primary"
+              class="m-1 btn float-right"
+              v-if="this.type === 'register'"
+              >등록</b-button
+            >
+          </b-form>
+        </b-col>
+      </b-row>
+    </b-container>
+  </b-card>
 </template>
 
 <script>
 import http from "@/util/http-common";
 import { mapState } from "vuex";
+
+const memberStore = "memberStore";
 
 export default {
   name: "BoardWriteForm",
@@ -48,15 +63,11 @@ export default {
     type: { type: String },
   },
   computed: {
-    ...mapState(["userid"]),
+    ...mapState(memberStore, ["userInfo"]),
   },
   created() {
     if (this.type === "modify") {
       http.get(`/board/${this.$route.params.articleno}`).then(({ data }) => {
-        // this.article.articleno = data.article.articleno;
-        // this.article.userid = data.article.userid;
-        // this.article.subject = data.article.subject;
-        // this.article.content = data.article.content;
         this.article = data;
       });
       this.isUserid = true;
@@ -91,9 +102,9 @@ export default {
     registArticleAnswer() {
       http
         .post(`/board/answer`, {
-          userid: this.userid,
+          userid: this.userInfo.userid,
           content: this.article.content,
-          articleno: this.$route.params.articleno,
+          articleno: this.article.articleno,
         })
         .then(({ data }) => {
           let msg = "댓글 등록 처리시 문제가 발생했습니다.";
@@ -108,7 +119,7 @@ export default {
       http
         .put(`/board`, {
           articleno: this.article.articleno,
-          userid: this.article.userid,
+          userid: this.userInfo.userid,
           subject: this.article.subject,
           content: this.article.content,
         })
@@ -129,4 +140,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#memo {
+  width: 100rem;
+}
+</style>

@@ -3,7 +3,7 @@
     <b-card-header class="border-0">
       <h3 class="mb-0">게시판</h3>
     </b-card-header>
-    <b-row class="mb-1 mr-3">
+    <b-row class="mb-3 mr-3">
       <b-col class="text-right">
         <b-button variant="outline-primary" @click="moveWrite()"
           >글쓰기</b-button
@@ -78,12 +78,13 @@
       </el-table-column>
     </el-table>
 
-    <b-card-footer class="py-4 d-flex justify-content-end">
+    <b-card-footer class="py-4 d-flex justify-content-center">
       <b-pagination
         v-model="currentPage"
         :total-rows="rows"
         :per-page="perPage"
         aria-controls="my-table"
+        align="center"
       ></b-pagination>
     </b-card-footer>
   </b-card>
