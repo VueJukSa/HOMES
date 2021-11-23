@@ -231,7 +231,7 @@ export default {
               var overlay = new kakao.maps.CustomOverlay({
                 content: content,
                 map: map,
-                position: marker.getPosition(),
+                position: new kakao.maps.LatLng((parseFloat(result[0].y)+0.0037)+"", result[0].x),
               });
               console.log(marker.getPosition());
               // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
@@ -614,7 +614,7 @@ export default {
 }
 /* 마커 커스텀 */
 .wrap {
-  position: absolute;
+  position: position;
   left: 0;
   bottom: 40px;
   width: 288px;
