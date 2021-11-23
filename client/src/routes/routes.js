@@ -6,7 +6,7 @@ import NotFound from "@/views/NotFoundPage.vue";
 import Board from "@/views/RegularTables.vue";
 import BoardList from "@/views/Tables/RegularTables/LightTable.vue";
 import BoardWrite from "@/views/Tables/RegularTables/BoardWrite.vue";
-import BoardView from "@/views/Tables/RegularTables/BoardView.vue";
+import BoardDetail from "@/views/Tables/RegularTables/BoardDetail.vue";
 import BoardUpdate from "@/views/Tables/RegularTables/BoardUpdate.vue";
 
 const routes = [
@@ -71,9 +71,9 @@ const routes = [
           },
           {
             path: "detail/:articleno",
-            name: "BoardView",
+            name: "BoardDetail",
             // beforeEnter: onlyAuthUser,
-            component: BoardView,
+            component: BoardDetail,
           },
           {
             path: "update/:articleno",

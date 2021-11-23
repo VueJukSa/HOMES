@@ -92,13 +92,11 @@
 import projects from "./../projects";
 import { Table, TableColumn } from "element-ui";
 import { listArticle, getTotalCount } from "@/api/board.js";
-import BoardListRow from "@/views/Tables/RegularTables/child/BoardListRow";
 export default {
   name: "light-table",
   components: {
     [Table.name]: Table,
     [TableColumn.name]: TableColumn,
-    BoardListRow,
   },
   data() {
     return { projects, articles: [], currentPage: 1, perPage: 5, total: 0 };
@@ -161,7 +159,7 @@ export default {
     },
     rowClicked(event) {
       this.$router.push({
-        name: "BoardView",
+        name: "BoardDetail",
         params: { articleno: event.articleno },
       });
     },

@@ -53,6 +53,7 @@
         <b-button type="submit" variant="primary" class="m-1" v-else
           >글수정</b-button
         >
+
         <b-button type="reset" variant="danger" class="m-1">초기화</b-button>
       </b-form>
     </b-col>
@@ -61,6 +62,8 @@
 
 <script>
 import { writeArticle, getArticle, modifyArticle } from "@/api/board";
+
+const memberStore = "memberStore";
 
 export default {
   name: "BoardWriteForm",
@@ -75,6 +78,7 @@ export default {
       isUserid: false,
     };
   },
+
   props: {
     type: { type: String },
   },

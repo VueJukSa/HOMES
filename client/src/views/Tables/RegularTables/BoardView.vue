@@ -9,7 +9,10 @@
       <b-col class="text-left">
         <b-button variant="outline-primary" @click="listArticle">목록</b-button>
       </b-col>
-      <b-col class="text-right">
+      <b-col
+        v-if="userInfo.userid == article.userid || userInfo.role == 'admin'"
+        class="text-right"
+      >
         <b-button
           variant="outline-info"
           size="sm"
@@ -43,7 +46,9 @@
 <script>
 // import moment from "moment";
 import { getArticle, deleteArticle } from "@/api/board";
+import { mapState } from "vuex";
 
+const memberStore = "memberStore";
 export default {
   data() {
     return {
@@ -51,6 +56,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
     message() {
       if (this.article.content)
         return this.article.content.split("\n").join("<br>");
