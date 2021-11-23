@@ -1,3 +1,5 @@
+import Vue from "vue";
+import VueRouter from "vue-router";
 import DashboardLayout from "@/views/Layout/DashboardLayout.vue";
 import AuthLayout from "@/views/Pages/AuthLayout.vue";
 
@@ -8,7 +10,25 @@ import BoardList from "@/views/Tables/RegularTables/LightTable.vue";
 import BoardWrite from "@/views/Tables/RegularTables/BoardWrite.vue";
 import BoardDetail from "@/views/Tables/RegularTables/BoardDetail.vue";
 import BoardUpdate from "@/views/Tables/RegularTables/BoardUpdate.vue";
+import store from "@/store/index.js";
 
+Vue.use(VueRouter);
+
+const onlyAuthUser = async (to, from, next) => {
+  // console.log(store);
+  const checkUserInfo = store.getters["memberStore/checkUserInfo"];
+  const getUserInfo = store._actions["memberStore/getUserInfo"];
+  let token = sessionStorage.getItem("access-token");
+  if (checkUserInfo == null && token) {
+    await getUserInfo(token);
+  }
+  if (checkUserInfo === null) {
+    next({ name: "login" });
+    router.push({ name: "login" });
+  } else {
+    next();
+  }
+};
 const routes = [
   {
     path: "/",
@@ -33,6 +53,7 @@ const routes = [
       {
         path: "/profile",
         name: "profile",
+        beforeEnter: onlyAuthUser,
         component: () =>
           import(
             /* webpackChunkName: "demo" */ "../views/Pages/UserProfile.vue"
@@ -47,6 +68,7 @@ const routes = [
       {
         path: "/editProfileForm",
         name: "editProfileForm",
+        beforeEnter: onlyAuthUser,
         component: () =>
           import(
             /* webpackChunkName: "demo" */ "../views/Pages/UserProfile/EditProfileForm.vue"
@@ -66,19 +88,19 @@ const routes = [
           {
             path: "write",
             name: "BoardWrite",
-            // beforeEnter: onlyAuthUser,
+            beforeEnter: onlyAuthUser,
             component: BoardWrite,
           },
           {
             path: "detail/:articleno",
             name: "BoardDetail",
-            // beforeEnter: onlyAuthUser,
+            beforeEnter: onlyAuthUser,
             component: BoardDetail,
           },
           {
             path: "update/:articleno",
             name: "BoardUpdate",
-            // beforeEnter: onlyAuthUser,
+            beforeEnter: onlyAuthUser,
             component: BoardUpdate,
           },
         ],
@@ -106,5 +128,9 @@ const routes = [
     ],
   },
 ];
-
+const router = new VueRouter({
+  mode: "history",
+  base: process.env.BASE_URL,
+  routes,
+});
 export default routes;
