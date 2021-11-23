@@ -3,7 +3,7 @@
     <b-card-header class="border-0">
       <h3 class="mb-0">게시판</h3>
     </b-card-header>
-  <b-row class="mb-1 mr-3">
+    <b-row class="mb-1 mr-3">
       <b-col class="text-right">
         <b-button variant="outline-primary" @click="moveWrite()"
           >글쓰기</b-button
@@ -15,6 +15,7 @@
       class="table-responsive table"
       header-row-class-name="thead-light"
       :data="articles"
+      @row-click="rowClicked($event)"
     >
       <el-table-column label="글번호" min-width="100px" prop="name">
         <template v-slot="{ row }">
@@ -91,11 +92,13 @@
 import projects from "./../projects";
 import { Table, TableColumn } from "element-ui";
 import { listArticle, getTotalCount } from "@/api/board.js";
+import BoardListRow from "@/views/Tables/RegularTables/child/BoardListRow";
 export default {
   name: "light-table",
   components: {
     [Table.name]: Table,
     [TableColumn.name]: TableColumn,
+    BoardListRow,
   },
   data() {
     return { projects, articles: [], currentPage: 1, perPage: 5, total: 0 };
@@ -155,6 +158,12 @@ export default {
           console.log(error);
         }
       );
+    },
+    rowClicked(event) {
+      this.$router.push({
+        name: "BoardView",
+        params: { articleno: event.articleno },
+      });
     },
   },
 };

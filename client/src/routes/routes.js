@@ -3,6 +3,12 @@ import AuthLayout from "@/views/Pages/AuthLayout.vue";
 
 import NotFound from "@/views/NotFoundPage.vue";
 
+import Board from "@/views/RegularTables.vue";
+import BoardList from "@/views/Tables/RegularTables/LightTable.vue";
+import BoardWrite from "@/views/Tables/RegularTables/BoardWrite.vue";
+import BoardView from "@/views/Tables/RegularTables/BoardView.vue";
+import BoardUpdate from "@/views/Tables/RegularTables/BoardUpdate.vue";
+
 const routes = [
   {
     path: "/",
@@ -49,8 +55,33 @@ const routes = [
       {
         path: "/board",
         name: "board",
-        component: () =>
-          import(/* webpackChunkName: "demo" */ "../views/RegularTables.vue"),
+        component: Board,
+        redirect: "/board/list",
+        children: [
+          {
+            path: "list",
+            name: "BoardList",
+            component: BoardList,
+          },
+          {
+            path: "write",
+            name: "BoardWrite",
+            // beforeEnter: onlyAuthUser,
+            component: BoardWrite,
+          },
+          {
+            path: "detail/:articleno",
+            name: "BoardView",
+            // beforeEnter: onlyAuthUser,
+            component: BoardView,
+          },
+          {
+            path: "update/:articleno",
+            name: "BoardUpdate",
+            // beforeEnter: onlyAuthUser,
+            component: BoardUpdate,
+          },
+        ],
       },
     ],
   },
