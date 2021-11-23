@@ -3,7 +3,13 @@
     <b-card-header class="border-0">
       <h3 class="mb-0">게시판</h3>
     </b-card-header>
-
+  <b-row class="mb-1 mr-3">
+      <b-col class="text-right">
+        <b-button variant="outline-primary" @click="moveWrite()"
+          >글쓰기</b-button
+        >
+      </b-col>
+    </b-row>
     <el-table
       id="my-table"
       class="table-responsive table"
