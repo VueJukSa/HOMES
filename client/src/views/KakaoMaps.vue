@@ -118,6 +118,7 @@
 </template>
 <script>
 import { API_KEY } from "./Maps/API_KEY";
+
 import HouseSearchBar from "@/components/House/HouseSearchBar.vue";
 import HouseList from "@/components/House/HouseList.vue";
 import HouseDetail from "@/components/House/HouseDetail.vue";
@@ -212,17 +213,26 @@ export default {
                 '<div class="wrap">' +
                 '    <div class="info">' +
                 '        <div class="title">' +
-                "            카카오 스페이스닷원" +
+                `           ${house.이름}` +
                 '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
                 "        </div>" +
                 '        <div class="body">' +
-                '            <div class="img">' +
-                '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-                "           </div>" +
                 '            <div class="desc">' +
-                '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
-                '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
-                '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
+                '                <div class="ellipsis">' +
+                `${house.도로명}` +
+                "</div>" +
+                '                <div class="jibun ellipsis">' +
+                `${house.전용면적}` +
+                "</div>" +
+                // '                <div class="jibun ellipsis">' +
+                // `${house.층}` +
+                // "</div>" +
+                // '                <div class="jibun ellipsis">' +
+                // `${house.거래금액}` +
+                // "</div>" +
+                '                <div class="jibun ellipsis">' +
+                `${house.도로명}` +
+                "</div>" +
                 "            </div>" +
                 "        </div>" +
                 "    </div>" +
@@ -248,31 +258,31 @@ export default {
                 overlay.setMap(null);
               }
             }
-            var bounds = new kakao.maps.LatLngBounds();
+            // var bounds = new kakao.maps.LatLngBounds();
 
-            var i, marker;
-            for (i = 0; i < points.length; i++) {
-              // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
-              marker = new kakao.maps.Marker({ position: points[i] });
-              marker.setMap(map);
+            // var i, marker;
+            // for (i = 0; i < points.length; i++) {
+            //   // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
+            //   marker = new kakao.maps.Marker({ position: points[i] });
+            //   marker.setMap(map);
 
-              // LatLngBounds 객체에 좌표를 추가합니다
-              bounds.extend(points[i]);
-            }
-
-            function setBounds() {
-              // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
-              // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
-              map.setBounds(bounds);
-            }
-            setBounds();
-            // if (cnt == 1) {
-            //   map.setCenter(new kakao.maps.LatLng(maxY, maxX));
-            // } else if (cnt > 1) {
-            //   map.setCenter(
-            //     new kakao.maps.LatLng((maxY + minY) / 2, (maxX + minX) / 2)
-            //   );
+            //   // LatLngBounds 객체에 좌표를 추가합니다
+            //   bounds.extend(points[i]);
             // }
+
+            // function setBounds() {
+            //   // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
+            //   // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
+            //   map.setBounds(bounds);
+            // }
+            // setBounds();
+            if (cnt == 1) {
+              map.setCenter(new kakao.maps.LatLng(maxY, maxX));
+            } else if (cnt > 1) {
+              map.setCenter(
+                new kakao.maps.LatLng((maxY + minY) / 2, (maxX + minX) / 2)
+              );
+            }
           }
         );
       });
@@ -639,14 +649,14 @@ export default {
 .wrap {
   position: position;
   left: 0;
-  bottom: 40px;
-  width: 288px;
+  bottom: 0px;
+  width: 200px;
   height: 132px;
   margin-left: -144px;
-  text-align: left;
+  text-align: center;
   overflow: hidden;
   font-size: 12px;
-  font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
+  font-family: "jua","Malgun Gothic", dotum, "돋움", sans-serif;
   line-height: 1.5;
 }
 .wrap * {
@@ -654,9 +664,9 @@ export default {
   margin: 0;
 }
 .wrap .info {
-  width: 286px;
+  width: 200px;
   height: 120px;
-  border-radius: 5px;
+  border-radius: 15px;
   border-bottom: 2px solid #ccc;
   border-right: 1px solid #ccc;
   overflow: hidden;
@@ -667,19 +677,20 @@ export default {
   box-shadow: 0px 1px 2px #888;
 }
 .info .title {
-  padding: 5px 0 0 10px;
-  height: 30px;
-  background: #eee;
+  
+  padding: 5px 0 0 5px;
+  height: 25px;
+  background: #e6e6fa;
   border-bottom: 1px solid #ddd;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 .info .close {
   position: absolute;
-  top: 10px;
+  top: 5px;
   right: 10px;
   color: #888;
-  width: 17px;
+  width: 16px;
   height: 17px;
   background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png");
 }
@@ -728,4 +739,5 @@ export default {
 .info .link {
   color: #5085bb;
 }
+
 </style>
