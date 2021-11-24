@@ -1,65 +1,6 @@
 <template>
   <div>
     <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-info">
-      <!-- Card stats -->
-      <b-row>
-        <b-col xl="3" md="6">
-          <stats-card
-            title="Total traffic"
-            type="gradient-red"
-            sub-title="350,897"
-            icon="ni ni-active-40"
-            class="mb-4"
-          >
-            <template slot="footer">
-              <span class="text-success mr-2">3.48%</span>
-              <span class="text-nowrap">Since last month</span>
-            </template>
-          </stats-card>
-        </b-col>
-        <b-col xl="3" md="6">
-          <stats-card
-            title="Total traffic"
-            type="gradient-orange"
-            sub-title="2,356"
-            icon="ni ni-chart-pie-35"
-            class="mb-4"
-          >
-            <template slot="footer">
-              <span class="text-success mr-2">12.18%</span>
-              <span class="text-nowrap">Since last month</span>
-            </template>
-          </stats-card>
-        </b-col>
-        <b-col xl="3" md="6">
-          <stats-card
-            title="Sales"
-            type="gradient-green"
-            sub-title="924"
-            icon="ni ni-money-coins"
-            class="mb-4"
-          >
-            <template slot="footer">
-              <span class="text-danger mr-2">5.72%</span>
-              <span class="text-nowrap">Since last month</span>
-            </template>
-          </stats-card>
-        </b-col>
-        <b-col xl="3" md="6">
-          <stats-card
-            title="Performance"
-            type="gradient-info"
-            sub-title="49,65%"
-            icon="ni ni-chart-bar-32"
-            class="mb-4"
-          >
-            <template slot="footer">
-              <span class="text-success mr-2">54.8%</span>
-              <span class="text-nowrap">Since last month</span>
-            </template>
-          </stats-card>
-        </b-col>
-      </b-row>
 
       <b-row>
         <b-col xl="3" md="6">
@@ -124,19 +65,19 @@
     <!--Charts-->
     <b-container fluid class="mt--7">
       <b-row>
-        <b-col xl="8" class="mb-5 mb-xl-0">
+        <b-col xl="8" class="mb-1 mb-xl-0">
           <card type="default" header-classes="bg-transparent">
             <b-row align-v="center" slot="header">
               <b-col>
-                <h5 class="h3 text-white mb-0">집값 변동 추이</h5>
-                <h6 class="text-light text-uppercase ls-1 mb-1">
-                  전국,수도권,서울,강남,강북
+                <h5 class="h3 text-white mb-0">집값 변동 추이 (단위 0.1%)</h5>
+                <h6 class="text-light text-uppercase ls-1 mb-0">
+                  서울,강남,강북
                 </h6>
               </b-col>
               <b-col>
                 <b-nav class="nav-pills justify-content-end">
                   <b-nav-item
-                    class="mr-2 mr-md-0"
+                    
                     :active="bigLineChart.activeIndex === 0"
                     link-classes="py-2 px-3"
                     @click.prevent="initBigChart(0)"
@@ -151,21 +92,22 @@
                     @click.prevent="initBigChart(1)"
                   >
                     <span class="d-none d-md-block">강남</span>
-                    <span class="d-md-none">W</span>
+                    <span class="d-md-none">M</span>
                   </b-nav-item>
 
                   <b-nav-item
-                    class="mr-2 mr-md-0"
+                    
                     :active="bigLineChart.activeIndex === 2"
                     link-classes="py-2 px-3"
                     @click.prevent="initBigChart(2)"
                   >
                     <span class="d-none d-md-block">강북</span>
-                    <span class="d-md-none">R</span>
+                    <span class="d-md-none">M</span>
                   </b-nav-item>
                 </b-nav>
               </b-col>
             </b-row>
+          
             <line-chart
               :height="350"
               ref="bigChart"
@@ -173,24 +115,13 @@
               :extra-options="bigLineChart.extraOptions"
             >
             </line-chart>
+            
           </card>
         </b-col>
 
         <b-col xl="4" class="mb-5 mb-xl-0">
           <card header-classes="bg-transparent">
-            <!-- <b-row align-v="center" slot="header">
-              <b-col>
-                <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                <h5 class="h3 mb-0">Total orders</h5>
-              </b-col>
-            </b-row> -->
-
-            <!-- <bar-chart
-              :height="350"
-              ref="barChart"
-              :chart-data="redBarChart.chartData"
-            >
-            </bar-chart> -->
+           
             <h1><i class="ni ni-check-bold"></i> 똑똑하게 집 구하기</h1>
             <hr />
             <a href="https://blog.naver.com/land_admin/221172176139">
@@ -226,18 +157,8 @@
           </card>
         </b-col>
       </b-row>
-      <!-- End charts-->
+    
 
-      <!--Tables-->
-      <b-row class="mt-5">
-        <b-col xl="8" class="mb-5 mb-xl-0">
-          <page-visits-table></page-visits-table>
-        </b-col>
-        <b-col xl="4" class="mb-5 mb-xl-0">
-          <social-traffic-table></social-traffic-table>
-        </b-col>
-      </b-row>
-      <!--End tables-->
     </b-container>
   </div>
 </template>
@@ -255,6 +176,8 @@ import StatsCard from "@/components/Cards/StatsCard";
 import SocialTrafficTable from "./Dashboard/SocialTrafficTable";
 import PageVisitsTable from "./Dashboard/PageVisitsTable";
 
+
+
 export default {
   components: {
     LineChart,
@@ -268,45 +191,40 @@ export default {
     return {
       bigLineChart: {
         allData: [
-          [0.4, 0.5, 0.4, 0.4, 0.4, 0.5, 0.6, 0.7, 0.7, 0.7],
-          [0, 20, 5, 25, 10, 30, 15, 40, 40],
+          [4, 5, 4, 4, 4, 5, 6, 7, 7, 7],
+          [5, 5, 4, 4, 4, 5, 6, 7, 8, 8],
+          [3, 5, 4, 4, 4, 4, 6, 7, 6, 6],
         ],
         activeIndex: 0,
         chartData: {
           datasets: [
             {
               label: "Performance",
-              data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+              data:  [40, 50, 40, 40, 40, 50, 60, 70, 70, 70],
             },
           ],
           labels: [
-            "2022.01",
-            "2022.02",
-            "2022.03",
-            "2022.04",
-            "2022.05",
-            "2022.06",
-            "2022.07",
-            "2022.08",
-            "2022.09",
-            "2022.10",
+           "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월"
           ],
         },
+        
         extraOptions: chartConfigs.blueChartOptions,
       },
-      redBarChart: {
-        chartData: {
-          labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          datasets: [
-            {
-              label: "Sales",
-              data: [25, 20, 30, 22, 17, 29],
-            },
-          ],
-        },
-        extraOptions: chartConfigs.blueChartOptions,
-      },
+      
+      // redBarChart: {
+      //   chartData: {
+      //     labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      //     datasets: [
+      //       {
+      //         label: "Sales",
+      //         data: [25, 20, 30, 22, 17, 29],
+      //       },
+      //     ],
+      //   },
+      //   extraOptions: chartConfigs.blueChartOptions,
+      // },
     };
+    
   },
   methods: {
     initBigChart(index) {
@@ -317,7 +235,7 @@ export default {
             data: this.bigLineChart.allData[index],
           },
         ],
-        labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
+        labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월"],
       };
       this.bigLineChart.chartData = chartData;
       this.bigLineChart.activeIndex = index;
@@ -333,4 +251,5 @@ export default {
   padding-left: 0px;
   padding-right: 0px;
 }
+
 </style>

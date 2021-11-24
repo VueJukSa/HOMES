@@ -126,10 +126,10 @@ function chartOptions() {
       zeroLineBorderDashOffset: [2]
     },
     ticks: {
-      beginAtZero: true,
+      beginAtZero: false,
       padding: 10,
       callback: function (value) {
-        if (!(value % 10)) {
+        if (!(value % 1)) {
           return value
         }
       }
