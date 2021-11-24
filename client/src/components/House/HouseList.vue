@@ -6,7 +6,7 @@
         :items="totalHousesforTable"
         :per-page="perPage"
         :current-page="currentPage"
-        @row-clicked="test"
+        @row-clicked="updateHit($event)"
         responsive="sm"
       ></b-table>
 
@@ -31,6 +31,7 @@
 <script>
 import HouseListRow from "@/components/House/HouseListRow.vue";
 import { mapState } from "vuex";
+import { upHouseHit } from "@/api/house.js";
 
 export default {
   name: "HouseList",
@@ -46,6 +47,7 @@ export default {
   },
   computed: {
     ...mapState([
+      "houseCodes",
       "housesBuy",
       "housesYear",
       "housesMonth",
@@ -60,8 +62,19 @@ export default {
     },
   },
   methods: {
-    test() {
-      console.log("클릭");
+    updateHit(event) {
+      let param = {
+        id: event.ID,
+      };
+      upHouseHit(
+        param,
+        (response) => {
+          console.log("집 조회수 ++");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
   },
 };
