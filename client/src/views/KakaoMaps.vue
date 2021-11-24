@@ -170,6 +170,7 @@ export default {
       let minY = 180;
       let cnt = 0;
 
+      var points = [];
       // 주소-좌표 변환 객체를 생성합니다
       const geocoder = new kakao.maps.services.Geocoder();
       // 주소로 좌표를 검색합니다
@@ -200,6 +201,7 @@ export default {
                 map: map, // 마커를 표시할 지도
                 position: new kakao.maps.LatLng(result[0].y, result[0].x), // 마커를 표시할 위치
               });
+              points.push(new kakao.maps.LatLng(result[0].y, result[0].x));
 
               // 커스텀 오버레이에 표시할 컨텐츠 입니다
               // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
@@ -231,7 +233,10 @@ export default {
               var overlay = new kakao.maps.CustomOverlay({
                 content: content,
                 map: map,
-                position: new kakao.maps.LatLng((parseFloat(result[0].y)+0.0037)+"", result[0].x),
+                position: new kakao.maps.LatLng(
+                  parseFloat(result[0].y) + 0.0037 + "",
+                  result[0].x
+                ),
               });
               console.log(marker.getPosition());
               // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
@@ -243,13 +248,31 @@ export default {
                 overlay.setMap(null);
               }
             }
-            if (cnt == 1) {
-              map.setCenter(new kakao.maps.LatLng(maxY, maxX));
-            } else if (cnt > 1) {
-              map.setCenter(
-                new kakao.maps.LatLng((maxY + minY) / 2, (maxX + minX) / 2)
-              );
+            var bounds = new kakao.maps.LatLngBounds();
+
+            var i, marker;
+            for (i = 0; i < points.length; i++) {
+              // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
+              marker = new kakao.maps.Marker({ position: points[i] });
+              marker.setMap(map);
+
+              // LatLngBounds 객체에 좌표를 추가합니다
+              bounds.extend(points[i]);
             }
+
+            function setBounds() {
+              // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
+              // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
+              map.setBounds(bounds);
+            }
+            setBounds();
+            // if (cnt == 1) {
+            //   map.setCenter(new kakao.maps.LatLng(maxY, maxX));
+            // } else if (cnt > 1) {
+            //   map.setCenter(
+            //     new kakao.maps.LatLng((maxY + minY) / 2, (maxX + minX) / 2)
+            //   );
+            // }
           }
         );
       });
