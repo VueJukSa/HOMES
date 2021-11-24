@@ -77,25 +77,10 @@
                       ></small
                     >
                   </div>
-                  <b-row class="my-4">
-                    <b-col cols="12">
-                      <base-input
-                        :rules="{ required: { allowFalse: false } }"
-                        name="Privacy"
-                        Policy
-                      >
-                        <b-form-checkbox v-model="model.agree">
-                          <span class="text-muted"
-                            >I agree with the
-                            <a href="#!">Privacy Policy</a></span
-                          >
-                        </b-form-checkbox>
-                      </base-input>
-                    </b-col>
-                  </b-row>
+
                   <div class="text-center">
-                    <b-button type="submit" variant="primary" class="mt-4"
-                      >Create account</b-button
+                    <b-button type="submit" variant="info" class="mt-4"
+                      >가입</b-button
                     >
                   </div>
                 </b-form>
@@ -122,7 +107,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      // this will be called only after form is valid. You can do an api call here to register users
+      //회원가입 API
     },
   },
 };
