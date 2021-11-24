@@ -36,7 +36,7 @@ export function makeHouseDetailObject(house, houseType) {
     houseObject.도로명 = house.도로명;
     houseObject.시군구 = house.시군구;
     houseObject.이름 = house.단지명;
-    houseObject.전용면적 = house.전용면적;
+    houseObject.전용면적 = parseInt(house.전용면적 * 0.3025);
     houseObject.계약년월 = house.계약년월;
     houseObject.전월세구분 = house.전월세구분;
     houseObject.계약일 = house.계약일;

@@ -128,8 +128,10 @@
           <card type="default" header-classes="bg-transparent">
             <b-row align-v="center" slot="header">
               <b-col>
-                <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                <h5 class="h3 text-white mb-0">Sales value</h5>
+                <h5 class="h3 text-white mb-0">집값 변동 추이</h5>
+                <h6 class="text-light text-uppercase ls-1 mb-1">
+                  전국,수도권,서울,강남,강북
+                </h6>
               </b-col>
               <b-col>
                 <b-nav class="nav-pills justify-content-end">
@@ -139,16 +141,27 @@
                     link-classes="py-2 px-3"
                     @click.prevent="initBigChart(0)"
                   >
-                    <span class="d-none d-md-block">Month</span>
+                    <span class="d-none d-md-block">서울</span>
                     <span class="d-md-none">M</span>
                   </b-nav-item>
+
                   <b-nav-item
                     link-classes="py-2 px-3"
                     :active="bigLineChart.activeIndex === 1"
                     @click.prevent="initBigChart(1)"
                   >
-                    <span class="d-none d-md-block">Week</span>
+                    <span class="d-none d-md-block">강남</span>
                     <span class="d-md-none">W</span>
+                  </b-nav-item>
+
+                  <b-nav-item
+                    class="mr-2 mr-md-0"
+                    :active="bigLineChart.activeIndex === 2"
+                    link-classes="py-2 px-3"
+                    @click.prevent="initBigChart(2)"
+                  >
+                    <span class="d-none d-md-block">강북</span>
+                    <span class="d-md-none">R</span>
                   </b-nav-item>
                 </b-nav>
               </b-col>
@@ -223,7 +236,7 @@ export default {
     return {
       bigLineChart: {
         allData: [
-          [0, 20, 10, 30, 15, 40, 20, 60, 60],
+          [0.4, 0.5, 0.4, 0.4, 0.4, 0.5, 0.6, 0.7, 0.7, 0.7],
           [0, 20, 5, 25, 10, 30, 15, 40, 40],
         ],
         activeIndex: 0,
@@ -234,7 +247,18 @@ export default {
               data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
             },
           ],
-          labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+          labels: [
+            "2022.01",
+            "2022.02",
+            "2022.03",
+            "2022.04",
+            "2022.05",
+            "2022.06",
+            "2022.07",
+            "2022.08",
+            "2022.09",
+            "2022.10",
+          ],
         },
         extraOptions: chartConfigs.blueChartOptions,
       },
@@ -261,7 +285,7 @@ export default {
             data: this.bigLineChart.allData[index],
           },
         ],
-        labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
       };
       this.bigLineChart.chartData = chartData;
       this.bigLineChart.activeIndex = index;

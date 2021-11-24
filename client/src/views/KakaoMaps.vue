@@ -176,7 +176,7 @@ export default {
       const geocoder = new kakao.maps.services.Geocoder();
       // 주소로 좌표를 검색합니다
       this.totalHouses.forEach((house) => {
-        // console.log(`${house.sigungu} ${house.roadname}`);
+        console.log(house);
         geocoder.addressSearch(
           `${house.시군구} ${house.도로명}`,
           function (result, status) {
@@ -656,7 +656,7 @@ export default {
   text-align: center;
   overflow: hidden;
   font-size: 12px;
-  font-family: "jua","Malgun Gothic", dotum, "돋움", sans-serif;
+  font-family: "jua", "Malgun Gothic", dotum, "돋움", sans-serif;
   line-height: 1.5;
 }
 .wrap * {
@@ -677,7 +677,6 @@ export default {
   box-shadow: 0px 1px 2px #888;
 }
 .info .title {
-  
   padding: 5px 0 0 5px;
   height: 25px;
   background: #e6e6fa;
@@ -739,5 +738,4 @@ export default {
 .info .link {
   color: #5085bb;
 }
-
 </style>
