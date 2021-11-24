@@ -2,7 +2,7 @@
   <div>
     <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-info">
       <!-- Card stats -->
-      <b-row>
+      <!-- <b-row>
         <b-col xl="3" md="6">
           <stats-card
             title="Total traffic"
@@ -59,7 +59,8 @@
             </template>
           </stats-card>
         </b-col>
-      </b-row>
+      </b-row> -->
+      <b-row> <h1 style="margin: 0 auto">집 검색</h1> </b-row>
     </base-header>
 
     <b-container fluid class="mt--7">

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Header -->
-    <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
+    <div class="header bg-info py-7 py-lg-8 pt-lg-9">
       <div class="separator separator-bottom separator-skew zindex-100">
         <svg
           x="0"
@@ -73,11 +73,6 @@
             </b-card-body>
           </b-card>
           <b-row class="mt-3">
-            <b-col cols="6">
-              <router-link to="/dashboard" class="text-light"
-                ><small>Forgot password?</small></router-link
-              >
-            </b-col>
             <b-col cols="6" class="text-right">
               <router-link to="/register" class="text-light" @click="movePage"
                 ><small>Create new account</small></router-link
