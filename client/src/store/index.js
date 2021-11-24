@@ -2,7 +2,10 @@ import Vue from "vue";
 import Vuex from "vuex";
 import http from "@/util/http-common.js";
 import createPersistedState from "vuex-persistedstate";
-
+import {
+  makeHouseSimpleObject,
+  makeHouseDetailObject,
+} from "@/util/houseObject.js";
 Vue.use(Vuex);
 import memberStore from "@/store/modules/memberStore.js";
 import boardStore from "@/store/modules/boardStore.js";
@@ -175,6 +178,7 @@ export default new Vuex.Store({
         });
     },
 
+    // 매매
     getHouseBuy({ commit }, searchInfo) {
       const params = {
         dong: searchInfo[0],
@@ -193,6 +197,7 @@ export default new Vuex.Store({
       } else {
         houseType = `dandok`;
       }
+
       http
         .get(`/map/houselist/${houseType}`, { params })
         .then((response) => {
@@ -201,21 +206,8 @@ export default new Vuex.Store({
           let simple = [];
           let detail = [];
           response.data.forEach((house) => {
-            simple.push({
-              아파트이름: house.단지명,
-              도로명: house.도로명,
-              계약: "매매",
-            });
-
-            detail.push({
-              시군구: house.시군구,
-              아파트이름: house.단지명,
-              도로명: house.도로명,
-              거래금액: house.거래금액,
-              층: house.층,
-              건축년도: house.건축년도,
-              전용면적: house.전용면적,
-            });
+            simple.push(makeHouseSimpleObject(house, houseType));
+            detail.push(makeHouseDetailObject(house, houseType));
           });
           commit("SET_HOUSE_SIMPLE_LIST_BUY", simple);
           commit("SET_HOUSE_DETAIL_LIST_BUY", detail);
@@ -247,22 +239,9 @@ export default new Vuex.Store({
           //2. 비동기 진행 후 해당 데이터를 뮤테이션에게 넘김
           let simple = [];
           let detail = [];
-          response.data.forEach((apt) => {
-            simple.push({
-              아파트이름: apt.단지명,
-              도로명: apt.도로명,
-              계약: "전세",
-            });
-
-            detail.push({
-              시군구: apt.시군구,
-              아파트이름: apt.단지명,
-              도로명: apt.도로명,
-              층: apt.층,
-              건축년도: apt.건축년도,
-              전용면적: apt.전용면적,
-              보증금: apt.보증금,
-            });
+          response.data.forEach((house) => {
+            simple.push(makeHouseSimpleObject(house, houseType));
+            detail.push(makeHouseDetailObject(house, houseType));
           });
           commit("SET_HOUSE_SIMPLE_LIST_YEAR", simple);
           commit("SET_HOUSE_DETAIL_LIST_YEAR", detail);
@@ -293,23 +272,9 @@ export default new Vuex.Store({
         .then((response) => {
           let simple = [];
           let detail = [];
-          response.data.forEach((apt) => {
-            simple.push({
-              아파트이름: apt.단지명,
-              도로명: apt.도로명,
-              계약: "월세",
-            });
-
-            detail.push({
-              시군구: apt.시군구,
-              아파트이름: apt.단지명,
-              도로명: apt.도로명,
-              층: apt.층,
-              건축년도: apt.건축년도,
-              전용면적: apt.전용면적,
-              보증금: apt.보증금,
-              월세: apt.월세,
-            });
+          response.data.forEach((house) => {
+            simple.push(makeHouseSimpleObject(house, houseType));
+            detail.push(makeHouseDetailObject(house, houseType));
           });
           commit("SET_HOUSE_SIMPLE_LIST_MONTH", simple);
           commit("SET_HOUSE_DETAIL_LIST_MONTH", detail);
