@@ -191,27 +191,38 @@
               :chart-data="redBarChart.chartData"
             >
             </bar-chart> -->
-            <h1>🏠 똑똑하게 집 구하기 🏠</h1><hr>
+            <h1><i class="ni ni-check-bold"></i> 똑똑하게 집 구하기</h1>
+            <hr />
             <a href="https://blog.naver.com/land_admin/221172176139">
-            <h4>&nbsp;&nbsp; 1.&nbsp;&nbsp; 가용자금 확인 및 대출 계획</h4></a>
+              <h4>&nbsp;&nbsp; 1.&nbsp;&nbsp; 가용자금 확인 및 대출 계획</h4></a
+            >
             <a href="http://blog.naver.com/land_admin/221172968369">
-            <h4>&nbsp;&nbsp; 2.&nbsp;&nbsp; 집 종류 및 지역 선택</h4></a>
+              <h4>&nbsp;&nbsp; 2.&nbsp;&nbsp; 집 종류 및 지역 선택</h4></a
+            >
             <a href="http://blog.naver.com/land_admin/221172975575">
-            <h4>&nbsp;&nbsp; 3. &nbsp;&nbsp;정보 수집, 시세 파악</h4></a>
+              <h4>&nbsp;&nbsp; 3. &nbsp;&nbsp;정보 수집, 시세 파악</h4></a
+            >
             <a href="http://blog.naver.com/land_admin/221173052981">
-            <h4>&nbsp;&nbsp; 4.&nbsp;&nbsp; 부동산 방문, 집 구경</h4></a>
+              <h4>&nbsp;&nbsp; 4.&nbsp;&nbsp; 부동산 방문, 집 구경</h4></a
+            >
             <a href="http://blog.naver.com/land_admin/221176290264">
-            <h4>&nbsp;&nbsp; 5. &nbsp;&nbsp;계약 및 잔금 치르기</h4></a>
+              <h4>&nbsp;&nbsp; 5. &nbsp;&nbsp;계약 및 잔금 치르기</h4></a
+            >
             <a href="http://blog.naver.com/land_admin/221176300611">
-            <h4>&nbsp;&nbsp; 6. &nbsp;&nbsp;소유권 이전등기</h4></a>
+              <h4>&nbsp;&nbsp; 6. &nbsp;&nbsp;소유권 이전등기</h4></a
+            >
             <a href="http://blog.naver.com/land_admin/221176306347">
-            <h4>&nbsp;&nbsp; 7.&nbsp;&nbsp; 인테리어 공사</h4></a>
+              <h4>&nbsp;&nbsp; 7.&nbsp;&nbsp; 인테리어 공사</h4></a
+            >
             <a href="http://blog.naver.com/land_admin/221176998743">
-            <h4>&nbsp;&nbsp; 8.&nbsp;&nbsp; 이사</h4></a>
+              <h4>&nbsp;&nbsp; 8.&nbsp;&nbsp; 이사</h4></a
+            >
             <a href="http://blog.naver.com/land_admin/221177010341">
-            <h4>&nbsp;&nbsp; 9. &nbsp;&nbsp;거주하면서</h4></a>
+              <h4>&nbsp;&nbsp; 9. &nbsp;&nbsp;거주하면서</h4></a
+            >
             <a href="http://blog.naver.com/land_admin/221177033918">
-            <h4>&nbsp;&nbsp;10. &nbsp;&nbsp;매도하기</h4></a>
+              <h4>&nbsp;&nbsp;10. &nbsp;&nbsp;매도하기</h4></a
+            >
           </card>
         </b-col>
       </b-row>
