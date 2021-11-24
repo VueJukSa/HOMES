@@ -4,7 +4,7 @@
       class="header pb-0 pt-0 pt-lg-7 d-flex align-items-center profile-header"
     ></div>
     <div>
-      <span class="mask bg-gradient-success opacity-8"></span>
+      <span class="mask bg-info"></span>
       <b-container fluid>
         <b-row align-h="center">
           <b-col xl="6" class="order-xl-2 mt-3 mb-6">

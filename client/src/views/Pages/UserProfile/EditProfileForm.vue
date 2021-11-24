@@ -4,14 +4,14 @@
       <b-col cols="8">
         <h3 class="mb-0">정보 수정</h3>
       </b-col>
-      <b-col cols="4" class="text-right">
+     <!-- <b-col cols="4" class="text-right">
         <a href="#!" class="btn btn-sm btn-primary">수정 </a>
-      </b-col>
+      </b-col> -->
     </b-row>
 
     <b-form @submit.prevent="updateProfile">
       <h6 class="heading-small text-muted mb-4">사용자 정보</h6>
-
+ 
       <div class="pl-lg-4">
         <b-row>
           <b-col lg="6"
@@ -114,6 +114,9 @@
         </b-form-group>
       </div>
     </b-form>
+      <b-col cols="12" class="text-right mt-3" >
+        <a href="#!" class="btn btn-sm btn-primary">수정완료 </a>
+      </b-col>
   </card>
 </template>
 <script>
