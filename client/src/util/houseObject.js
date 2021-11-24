@@ -2,69 +2,29 @@ export function makeHouseSimpleObject(house, houseType) {
   let houseObject = new Object();
   if (houseType === `apt`) {
     houseObject.이름 = house.단지명;
-    houseObject.도로명 = house.도로명;
-    if (house.거래금액) {
-      houseObject.거래금액 = house.거래금액;
-    }
-    if (house.전월세구분) {
-      houseObject.구분 = house.전월세구분;
-      if (house.전월세구분 === `전세`) {
-        houseObject.보증금 = house.보증금;
-      } else {
-        houseObject.보증금 = house.보증금;
-        houseObject.월세 = house.월세;
-      }
-    }
+    houseObject.거래금액 = house.거래금액 ? house.거래금액 : "-";
+    houseObject.전월세구분 = house.전월세구분 ? house.전월세구분 : "매매";
+    houseObject.보증금 = house.보증금 ? house.보증금 : "-";
+    houseObject.월세 = house.월세 ? house.월세 : "-";
   } else if (houseType === `office`) {
     houseObject.이름 = house.단지명;
-    houseObject.도로명 = house.도로명;
-    if (house.거래금액) {
-      houseObject.거래금액 = house.거래금액;
-    }
-    if (house.전월세구분) {
-      houseObject.구분 = house.전월세구분;
-      if (house.전월세구분 === `전세`) {
-        houseObject.보증금 = house.보증금;
-      } else {
-        houseObject.보증금 = house.보증금;
-        houseObject.월세 = house.월세;
-      }
-    }
+    houseObject.거래금액 = house.거래금액 ? house.거래금액 : "-";
+    houseObject.전월세구분 = house.전월세구분 ? house.전월세구분 : "매매";
+    houseObject.보증금 = house.보증금 ? house.보증금 : "-";
+    houseObject.월세 = house.월세 ? house.월세 : "-";
   } else if (houseType === `yeonrip`) {
     houseObject.이름 = house.건물명;
-    houseObject.도로명 = house.도로명;
-    if (house.거래금액) {
-      houseObject.거래금액 = house.거래금액;
-    }
-    if (house.전월세구분) {
-      houseObject.구분 = house.전월세구분;
-      if (house.전월세구분 === `전세`) {
-        houseObject.보증금 = house.보증금;
-      } else {
-        houseObject.보증금 = house.보증금;
-        houseObject.월세 = house.월세;
-      }
-    } else if (!house.전월세구분) {
-      houseObject.대지권면적 = house.대지권면적;
-    }
+    houseObject.거래금액 = house.거래금액 ? house.거래금액 : "-";
+    houseObject.전월세구분 = house.전월세구분 ? house.전월세구분 : "매매";
+    houseObject.보증금 = house.보증금 ? house.보증금 : "-";
+    houseObject.월세 = house.월세 ? house.월세 : "-";
+    houseObject.대지권면적 = house.대지권면적 ? house.대지권면적 : "-";
   } else {
-    houseObject.도로명 = house.도로명;
-
-    if (house.거래금액) {
-      houseObject.거래금액 = house.거래금액;
-    }
-    if (house.전월세구분) {
-      houseObject.구분 = house.전월세구분;
-      if (house.전월세구분 === `전세`) {
-        houseObject.보증금 = house.보증금;
-      } else {
-        houseObject.보증금 = house.보증금;
-        houseObject.월세 = house.월세;
-      }
-    } else if (!house.전월세구분) {
-      houseObject.연면적 = house.연면적;
-      houseObject.대지면적 = house.대지면적;
-    }
+    houseObject.전월세구분 = house.전월세구분 ? house.전월세구분 : "매매";
+    houseObject.보증금 = house.보증금 ? house.보증금 : "-";
+    houseObject.월세 = house.월세 ? house.월세 : "-";
+    houseObject.연면적 = house.연면적 ? house.연면적 : "-";
+    houseObject.대지면적 = house.대지면적 ? house.대지면적 : "-";
   }
   return houseObject;
 }
