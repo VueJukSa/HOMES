@@ -20,9 +20,10 @@
         align="center"
       ></b-pagination>
     </div>
+
     <div v-else class="bv-example-row mt-3">
       <b-row>
-        <b-col><b-alert show variant="white"></b-alert></b-col>
+        <b-col><p align="center">😭 매물이 없습니다</p></b-col>
       </b-row>
     </div>
   </b-container>
