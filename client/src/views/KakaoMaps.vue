@@ -1,18 +1,19 @@
 <template>
   <div>
     <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-info"> </base-header>
-
     <b-container fluid class="mt--7">
+      <b-card no-body class="border-0">
+        <div style="height: 100px">
+          <b-row>
+            <b-col style="padding-left: 0px">
+              <house-search-bar />
+            </b-col>
+          </b-row></div
+      ></b-card>
       <b-row>
-        <b-col cols="5">
+        <b-col cols="5" pr-0 style="padding-right: 0px">
           <b-card no-body class="border-0">
             <div style="height: 500px">
-              <b-row>
-                <b-col>
-                  <house-search-bar />
-                </b-col>
-              </b-row>
-
               <b-row>
                 <b-col>
                   <house-list />
@@ -21,8 +22,8 @@
             </div>
           </b-card>
         </b-col>
-        <b-col>
-          <b-card no-body class="border-0">
+        <b-col style="padding-left: 0px">
+          <b-card no-body class="border-0" pl-0>
             <div id="map-custom" class="map-canvas" style="height: 500px"></div>
             <ul id="category">
               <li id="BK9" data-order="0">
@@ -149,46 +150,46 @@ export default {
               // 별도의 이벤트 메소드를 제공하지 않습니다
               // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
 
-              var content =
-                '<div class="wrap">' +
-                '    <div class="info">' +
-                '        <div class="title">' +
-                `           ${house.이름}` +
-                '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-                "        </div>" +
-                '        <div class="body">' +
-                '            <div class="desc">' +
-                '                <div class="ellipsis">' +
-                `${house.도로명}` +
-                "</div>" +
-                '                <div class="jibun ellipsis">' +
-                `${house.전용면적}` +
-                "</div>" +
-                // '                <div class="jibun ellipsis">' +
-                // `${house.층}` +
-                // "</div>" +
-                // '                <div class="jibun ellipsis">' +
-                // `${house.거래금액}` +
-                // "</div>" +
-                '                <div class="jibun ellipsis">' +
-                `${house.도로명}` +
-                "</div>" +
-                "            </div>" +
-                "        </div>" +
-                "    </div>" +
-                "</div>";
+              // var content =
+              //   '<div class="wrap">' +
+              //   '    <div class="info">' +
+              //   '        <div class="title">' +
+              //   `           ${house.이름}` +
+              //   '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+              //   "        </div>" +
+              //   '        <div class="body">' +
+              //   '            <div class="desc">' +
+              //   '                <div class="ellipsis">' +
+              //   `${house.도로명}` +
+              //   "</div>" +
+              //   '                <div class="jibun ellipsis">' +
+              //   `${house.전용면적}` +
+              //   "</div>" +
+              //   // '                <div class="jibun ellipsis">' +
+              //   // `${house.층}` +
+              //   // "</div>" +
+              //   // '                <div class="jibun ellipsis">' +
+              //   // `${house.거래금액}` +
+              //   // "</div>" +
+              //   '                <div class="jibun ellipsis">' +
+              //   `${house.도로명}` +
+              //   "</div>" +
+              //   "            </div>" +
+              //   "        </div>" +
+              //   "    </div>" +
+              //   "</div>";
 
               // 마커 위에 커스텀오버레이를 표시합니다
               // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-              var overlay = new kakao.maps.CustomOverlay({
-                content: content,
-                map: map,
-                position: new kakao.maps.LatLng(
-                  parseFloat(result[0].y) + 0.0037 + "",
-                  result[0].x
-                ),
-              });
-              console.log(marker.getPosition());
+              // var overlay = new kakao.maps.CustomOverlay({
+              //   content: content,
+              //   map: map,
+              //   position: new kakao.maps.LatLng(
+              //     parseFloat(result[0].y) + 0.0037 + "",
+              //     result[0].x
+              //   ),
+              // });
+              // console.log(marker.getPosition());
               // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
               kakao.maps.event.addListener(marker, "click", function () {
                 overlay.setMap(map);
@@ -677,5 +678,13 @@ export default {
 }
 .info .link {
   color: #5085bb;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #11cdef;
+  background-color: #11cdef;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 </style>

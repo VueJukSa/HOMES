@@ -134,3 +134,18 @@ export default {
 //   }
 // };
 </script>
+<style>
+.btn-primary:hover {
+  color: #fff;
+  background-color: #11cdef !important;
+  border-color: #11cdef !important;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #11cdef;
+  border-color: #11cdef;
+  -webkit-box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+  box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+}
+</style>

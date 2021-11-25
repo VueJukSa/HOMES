@@ -6,7 +6,7 @@
         :items="totalHousesforTable"
         :per-page="perPage"
         :current-page="currentPage"
-        @row-clicked="updateHit($event)"
+        @row-clicked="detail($event)"
         responsive="sm"
       ></b-table>
 
@@ -62,19 +62,8 @@ export default {
     },
   },
   methods: {
-    updateHit(event) {
-      let param = {
-        id: event.ID,
-      };
-      upHouseHit(
-        param,
-        (response) => {
-          console.log("집 조회수 ++");
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    detail(event) {
+      console.log(event);
     },
   },
 };

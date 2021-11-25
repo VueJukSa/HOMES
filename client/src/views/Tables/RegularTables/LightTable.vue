@@ -167,3 +167,18 @@ export default {
   },
 };
 </script>
+<style>
+.btn-outline-primary {
+  color: #11cdef !important;
+  background-color: transparent;
+  background-image: none;
+  border-color: #11cdef !important;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #11cdef;
+  border-color: #11cdef;
+}
+</style>

@@ -1,11 +1,11 @@
 <template>
   <div>
     <b-row class="mt-1 mb-1 pr-2 text-center">
-      <b-col class="select a">
+      <b-col class="select a ml-3" style="margin-right: 0px">
         <!-- 시 선택 -->
         <b-form-select
           size="sm"
-          class="mt-2 ml-2"
+          class="mt-2"
           v-model="sidoCode"
           :options="sidos"
           @change="gugunList"
@@ -15,7 +15,7 @@
       <b-col class="select">
         <b-form-select
           size="sm"
-          class="mt-2 ml-2"
+          class="mt-2"
           v-model="gugunCode"
           :options="guguns"
           @change="dongList"
@@ -25,7 +25,7 @@
       <b-col class="select">
         <b-form-select
           size="sm"
-          class="mt-2 ml-2"
+          class="mt-2"
           v-model="dongCode"
           :options="dongs"
           @change="houseCodeList"
@@ -35,7 +35,7 @@
       <b-col class="select">
         <b-form-select
           size="sm"
-          class="mt-2 ml-2"
+          class="mt-2"
           v-model="houseCode"
           :options="houseCodes"
           @change="searchHouse"
@@ -161,6 +161,6 @@ export default {
 
 <style>
 .custom-select {
-  width: 95%;
+  max-width: 50%;
 }
 </style>
