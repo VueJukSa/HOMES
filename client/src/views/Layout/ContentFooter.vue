@@ -4,12 +4,8 @@
       <b-col lg="6">
         <div class="copyright text-center text-lg-left text-muted">
           © {{ year }}
-          <a
-            href="https://www.creative-tim.com"
-            class="font-weight-bold ml-1"
-            target="_blank"
-            >Creative 혜성종근</a
-          >
+
+          Creative SSAFY 6기 서울13반 한혜성 박종근
         </div>
       </b-col>
       <b-col lg="6">

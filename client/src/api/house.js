@@ -6,4 +6,8 @@ function upHouseHit(param, success, fail) {
   api.put(`/map/hit`, { params: param }).then(success).catch(fail);
 }
 
-export { upHouseHit };
+function getHouseTopLank(success, fail) {
+  api.get(`/map/toplank`).then(success).catch(fail);
+}
+
+export { upHouseHit, getHouseTopLank };
