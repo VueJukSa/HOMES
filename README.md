@@ -1,6 +1,7 @@
 
 
-# Homes를 소개합니다&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <img src="https://img.shields.io/badge/npm-v6.14.8-blue" alt="npm v6.14.8">&nbsp;<img src="https://img.shields.io/badge/Vue.js-v2.6.11-orange" alt="Vue.js v2.6.11">&nbsp;<img src="https://img.shields.io/badge/node-v14.15.1-brightgreen" alt="node v14.15.1">&nbsp;<img src="https://img.shields.io/badge/STS-v3.9.14-yellow" alt="sts v3.9.14">&nbsp;<img src="https://img.shields.io/badge/Tomcat-v9.0.50-purple" alt="Tomcat-v9.0.50">
+# Homes를 소개합니다
+ <img src="https://img.shields.io/badge/npm-v6.14.8-blue" alt="npm v6.14.8">&nbsp;<img src="https://img.shields.io/badge/Vue.js-v2.6.11-orange" alt="Vue.js v2.6.11">&nbsp;<img src="https://img.shields.io/badge/node-v14.15.1-brightgreen" alt="node v14.15.1">&nbsp;<img src="https://img.shields.io/badge/STS-v3.9.14-yellow" alt="sts v3.9.14">&nbsp;<img src="https://img.shields.io/badge/Tomcat-v9.0.50-purple" alt="Tomcat-v9.0.50">
 
 
 집을 구하는 사회초년생을 위해 간단한 게시판과 서울에 있는 아파트, 오피스텔, 단독 주택, 연립 주택 등 다양한 주택의 매매, 계약 정보와 주변 정보를 지도에서 확인하고 검색해 볼 수 있는 웹 애플리케이션입니다.
